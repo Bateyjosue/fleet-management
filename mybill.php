@@ -8,7 +8,7 @@
     $username= $_GET['id'];
     //echo $username;
     
-    $connection= mysqli_connect('localhost','root','','vehicle_management');
+    $connection=mysqli_connect('localhost','root','','fleet-management');
 
     $query= "SELECT booking.booking_id, booking.req_date,booking.`ret_date`, booking.`destination`, booking.`veh_reg`, booking.`driverid`, tripcost.total_km,tripcost.oil_cost, tripcost.extra_cost,tripcost.total_cost,tripcost.paid FROM `booking` LEFT JOIN `tripcost` ON booking.username=tripcost.username WHERE booking.username='$username' AND booking.booking_id=tripcost.booking_id;";
 

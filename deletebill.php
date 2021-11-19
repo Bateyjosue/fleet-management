@@ -2,7 +2,7 @@
    
    $id= $_GET['id'];
 
-   $conn=mysqli_connect('localhost','root','','vehicle_management');
+   $connection=mysqli_connect("localhost","root","","fleet-management");
    $sql="DELETE FROM bill WHERE bill_id='$id'";
    $result=mysqli_query($conn,$sql);
    if(mysqli_query($conn,$sql)){

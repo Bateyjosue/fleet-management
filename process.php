@@ -9,8 +9,7 @@
 
     
 
-    $connection=mysqli_connect("localhost","root","","vehicle_management");
-
+    $connection=mysqli_connect('localhost','root','','fleet-management');
     if(isset($_POST['drname1']))
     {
         //$sql= "INSERT INTO `status`(`post_id`, `name`, `status`) VALUES ('','$data1','$data2')";

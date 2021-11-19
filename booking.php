@@ -3,7 +3,7 @@
     { 
         session_start(); 
     } 
-    $connection= mysqli_connect('localhost','root','','vehicle_management');
+    $connection=mysqli_connect("localhost","root","","fleet-management");
 
 
     $username= $_SESSION['username'];

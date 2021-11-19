@@ -5,8 +5,8 @@
     } 
     
 
-    $connection= mysqli_connect('localhost','root','','vehicle_management');
-    $msg= "" ;
+    $connection=mysqli_connect('localhost','root','','fleet-management');
+        $msg= "" ;
     
     if(isset($_POST['submit'])){
         $regno= $_POST['vehregno'];

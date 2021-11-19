@@ -1,6 +1,6 @@
 <?php
     session_start();
-     $connection= mysqli_connect('localhost','root','','vehicle_management');
+    $connection=mysqli_connect("localhost","root","","fleet-management");
 
     $select_query="SELECT * FROM `booking` ORDER BY booking_id DESC";
     $result= mysqli_query($connection,$select_query);

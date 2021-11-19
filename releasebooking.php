@@ -2,7 +2,7 @@
    
    $id= $_GET['id'];
 
-   $conn=mysqli_connect('localhost','root','','vehicle_management'); 
+   $conn=mysqli_connect('localhost','root','','fleet-management'); 
 
     $sql1="SELECT `veh_reg`, `driverid` FROM `booking` WHERE booking_id='$id'";
     $result1=mysqli_query($conn,$sql1);

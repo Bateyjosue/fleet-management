@@ -5,7 +5,7 @@
     } 
    
 
-    $connection= mysqli_connect('localhost','root','','vehicle_management');
+    $connection=mysqli_connect('localhost','root','','fleet-management');
     $msg= "" ;     
 
 

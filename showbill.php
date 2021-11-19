@@ -2,7 +2,7 @@
    
    $id= $_GET['id'];
 
-   $conn=mysqli_connect('localhost','root','','vehicle_management');
+   $conn=mysqli_connect('localhost','root','','fleet-management');
    $sql="SELECT * FROM bill WHERE id='$id'";
    $result=mysqli_query($conn,$sql);
 
