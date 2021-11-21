@@ -1,11 +1,10 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "fleet-management");
-$sql = "SELECT * FROM bill ";
-$result = mysqli_query($conn, $sql);
-if (!isset($_SESSION)) {
-  session_start();
-}
-
+  $conn = mysqli_connect("localhost", "root", "", "fleet-management");
+  $sql = "SELECT * FROM bill ";
+  $result = mysqli_query($conn, $sql);
+  if (!isset($_SESSION)) {
+    session_start();
+  }
 ?>
 
 
