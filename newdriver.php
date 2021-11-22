@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
 }
 
 
-$connection = mysqli_connect('localhost', 'root', '', 'fleet-management');
+$connection = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
 $msg = "";
 
 
@@ -37,7 +37,6 @@ if (isset($_POST['submit'])) {
                     'success'
                     );
                 </script>";
-        
     } else {
         die('unsuccessful' . mysqli_error($connection));
     }
