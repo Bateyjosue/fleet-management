@@ -1,10 +1,10 @@
 <?php
-  $conn = mysqli_connect("localhost", "root", "", "fleet-management");
-  $sql = "SELECT * FROM bill ";
-  $result = mysqli_query($conn, $sql);
-  if (!isset($_SESSION)) {
-    session_start();
-  }
+$connection = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
+$sql = "SELECT * FROM bill ";
+$result = mysqli_query($conn, $sql);
+if (!isset($_SESSION)) {
+  session_start();
+}
 ?>
 
 
