@@ -14,10 +14,7 @@
             </div>
             <div class="info">
                 <a href="#" class="d-block">
-                    <php 
-                        session_start();
-                        echo $_SESSION['username'];
-                    ?>
+                    Administrator
                 </a>
             </div>
         </div>
