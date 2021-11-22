@@ -9,7 +9,7 @@
 
     
 
-    $connection=mysqli_connect('localhost','root','','fleet-management');
+    $connection = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
     if(isset($_POST['drname1']))
     {
         //$sql= "INSERT INTO `status`(`post_id`, `name`, `status`) VALUES ('','$data1','$data2')";
@@ -31,6 +31,4 @@
          //$data1= $_GET['namee'];
        
         
-    } 
-	
-?>
+    }
