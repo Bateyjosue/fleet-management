@@ -1,5 +1,5 @@
 <?php
-    $connection=mysqli_connect("localhost","root","","fleet-management");
+   $connection = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
     session_start();
 
     $id= $_GET['id'];
@@ -10,4 +10,3 @@
     if($result){
         header ('Location: bookinglist.php');
     }
-?>
