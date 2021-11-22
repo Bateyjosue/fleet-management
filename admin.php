@@ -1,11 +1,11 @@
 <?php
 
-    $conn = mysqli_connect("localhost", "root", "", "fleet-management");
-    $sql1 = "SELECT * FROM vihicle";
-    $res1 = mysqli_query($conn, $sql1);
-    if (!isset($_SESSION)) {
-        session_start();
-    }
+$conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
+$sql1 = "SELECT * FROM vihicle";
+$res1 = mysqli_query($conn, $sql1);
+if (!isset($_SESSION)) {
+    session_start();
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +37,7 @@
     <!-- summernote -->
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
     <!-- Ion Icon -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 
@@ -81,16 +81,16 @@
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                    <div class="col-lg-2 col-5">
+                        <div class="col-lg-2 col-5">
                             <!-- small box -->
                             <div class="small-box bg-info">
                                 <div class="inner">
                                     <h3>
-                                        <?php 
-                                            $sql = "SELECT COUNT(*) as count FROM `user`;";
-                                            $res = mysqli_query($conn, $sql);
-                                            $data = mysqli_fetch_assoc($res);
-                                            echo $data['count'];
+                                        <?php
+                                        $sql = "SELECT COUNT(*) as count FROM `user`;";
+                                        $res = mysqli_query($conn, $sql);
+                                        $data = mysqli_fetch_assoc($res);
+                                        echo $data['count'];
                                         ?>
                                         <!-- <h3><sup style="font-size: 20px">%</sup> -->
                                     </h3>
@@ -108,11 +108,11 @@
                             <div class="small-box bg-info">
                                 <div class="inner">
                                     <h3>
-                                        <?php 
-                                            $sql = "SELECT COUNT(*) as count FROM `driver`;";
-                                            $res = mysqli_query($conn, $sql);
-                                            $data = mysqli_fetch_assoc($res);
-                                            echo $data['count'];
+                                        <?php
+                                        $sql = "SELECT COUNT(*) as count FROM `driver`;";
+                                        $res = mysqli_query($conn, $sql);
+                                        $data = mysqli_fetch_assoc($res);
+                                        echo $data['count'];
                                         ?>
                                         <!-- <h3><sup style="font-size: 20px">%</sup> -->
                                     </h3>
@@ -131,11 +131,11 @@
                             <div class="small-box bg-success">
                                 <div class="inner">
                                     <h3>
-                                        <?php 
-                                            $sql = "SELECT COUNT(*) as count FROM `vehicle`;";
-                                            $res = mysqli_query($conn, $sql);
-                                            $data = mysqli_fetch_assoc($res);
-                                            echo $data['count'];
+                                        <?php
+                                        $sql = "SELECT COUNT(*) as count FROM `vehicle`;";
+                                        $res = mysqli_query($conn, $sql);
+                                        $data = mysqli_fetch_assoc($res);
+                                        echo $data['count'];
                                         ?>
                                         <!-- <h3><sup style="font-size: 20px">%</sup> -->
                                     </h3>
@@ -153,11 +153,11 @@
                             <div class="small-box bg-warning">
                                 <div class="inner">
                                     <h3>
-                                        <?php 
-                                            $sql = "SELECT COUNT(*) as count FROM `bill`;";
-                                            $res = mysqli_query($conn, $sql);
-                                            $data = mysqli_fetch_assoc($res);
-                                            echo $data['count'];
+                                        <?php
+                                        $sql = "SELECT COUNT(*) as count FROM `bill`;";
+                                        $res = mysqli_query($conn, $sql);
+                                        $data = mysqli_fetch_assoc($res);
+                                        echo $data['count'];
                                         ?>
                                         <!-- <h3><sup style="font-size: 20px">%</sup> -->
                                     </h3>
@@ -176,11 +176,11 @@
                             <div class="small-box bg-danger">
                                 <div class="inner">
                                     <h3>
-                                        <?php 
-                                            $sql = "SELECT COUNT(*) as count FROM `booking`;";
-                                            $res = mysqli_query($conn, $sql);
-                                            $data = mysqli_fetch_assoc($res);
-                                            echo $data['count'];
+                                        <?php
+                                        $sql = "SELECT COUNT(*) as count FROM `booking`;";
+                                        $res = mysqli_query($conn, $sql);
+                                        $data = mysqli_fetch_assoc($res);
+                                        echo $data['count'];
                                         ?>
                                         <!-- <h3><sup style="font-size: 20px">%</sup> -->
                                     </h3>
@@ -213,44 +213,44 @@
                                                 <th>User Last-name</th>
                                                 <th>User Email</th>
                                                 <th>Username </th>
-                                                <th>Password  </th>
+                                                <th>Password </th>
                                                 <th>Is Admin</th>
                                                 <th>User Availability</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?PHP 
-                                                $conn = mysqli_connect("localhost", "root", "", "fleet-management");
-                                                $sql = "SELECT * FROM user ";
-                                                $result = mysqli_query($conn, $sql);
-                                                while ($row = MYSQLI_FETCH_ASSOC($result)){ ?>
-                                                    <tr>
-                                                        <td><?PHP echo $row['user_id'];?></td>
-                                                        <td><?PHP echo $row['first_name'];?></td>
-                                                        <td><?PHP echo $row['last_name'];?></td>
-                                                        <td><?PHP echo $row['email'];?></td>
-                                                        <td><?PHP echo $row['username'];?></td>
-                                                        <td><?PHP echo substr(password_hash($row['password'], PASSWORD_DEFAULT), -12);?></td>
-                                                        <td><?PHP echo $row['admin'];?></td>
-                                                        <td><?PHP 
-                                                            if ($row['available'] == 1)
-                                                                echo '<span class="badge badge-success p-2 rounded-pill">Available</span>';
-                                                            else{
-                                                                echo '<span class="badge badge-danger p-2 rounded-pill">Not Available</span>';
-                                                            }
+                                            <?PHP
+                                            $conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
+                                            $sql = "SELECT * FROM user ";
+                                            $result = mysqli_query($conn, $sql);
+                                            while ($row = MYSQLI_FETCH_ASSOC($result)) { ?>
+                                                <tr>
+                                                    <td><?PHP echo $row['user_id']; ?></td>
+                                                    <td><?PHP echo $row['first_name']; ?></td>
+                                                    <td><?PHP echo $row['last_name']; ?></td>
+                                                    <td><?PHP echo $row['email']; ?></td>
+                                                    <td><?PHP echo $row['username']; ?></td>
+                                                    <td><?PHP echo substr(password_hash($row['password'], PASSWORD_DEFAULT), -12); ?></td>
+                                                    <td><?PHP echo $row['admin']; ?></td>
+                                                    <td><?PHP
+                                                        if ($row['available'] == 1)
+                                                            echo '<span class="badge badge-success p-2 rounded-pill">Available</span>';
+                                                        else {
+                                                            echo '<span class="badge badge-danger p-2 rounded-pill">Not Available</span>';
+                                                        }
 
                                                         ?></td>
-                                                    </tr>     
+                                                </tr>
                                             <?PHP } ?>
                                         </tbody>
-                                        <tfoot >
+                                        <tfoot>
                                             <tr>
-                                            <th>User ID</th>
+                                                <th>User ID</th>
                                                 <th>User Fist-Name</th>
                                                 <th>User Last-name</th>
                                                 <th>User Email</th>
                                                 <th>Username </th>
-                                                <th>Password  </th>
+                                                <th>Password </th>
                                                 <th>Is Admin</th>
                                                 <th>User Availability</th>
                                             </tr>
@@ -280,32 +280,32 @@
                                         </thead>
                                         <tbody>
                                             <?PHP
-                                                $conn = mysqli_connect("localhost", "root", "", "fleet-management");
-                                                $sql = "SELECT * FROM driver ";
-                                                $result = mysqli_query($conn, $sql); 
-                                                while ($row = MYSQLI_FETCH_ASSOC($result)){ ?>
+                                            $conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
+                                            $sql = "SELECT * FROM driver ";
+                                            $result = mysqli_query($conn, $sql);
+                                            while ($row = MYSQLI_FETCH_ASSOC($result)) { ?>
                                                 <tr>
-                                                    <td><?PHP echo $row['driverid'];?></td>
-                                                    <td><?PHP echo $row['drname'];?></td>
-                                                    <!-- <td><?PHP echo $row['drjoin'];?></td> -->
-                                                    <td><?PHP echo $row['drmobile'];?></td>
-                                                    <td><?PHP echo $row['drnid'];?></td>
-                                                    <td><?PHP echo $row['drlicense'];?></td>
-                                                    <td><?PHP echo $row['drlicensevalid'];?></td>
-                                                    <!-- <td><?PHP echo $row['draddress'];?></td> -->
-                                                    <!-- <td><?PHP echo $row['drphoto'];?></td> -->
-                                                    <td><?PHP 
+                                                    <td><?PHP echo $row['driverid']; ?></td>
+                                                    <td><?PHP echo $row['drname']; ?></td>
+                                                    <!-- <td><?PHP echo $row['drjoin']; ?></td> -->
+                                                    <td><?PHP echo $row['drmobile']; ?></td>
+                                                    <td><?PHP echo $row['drnid']; ?></td>
+                                                    <td><?PHP echo $row['drlicense']; ?></td>
+                                                    <td><?PHP echo $row['drlicensevalid']; ?></td>
+                                                    <!-- <td><?PHP echo $row['draddress']; ?></td> -->
+                                                    <!-- <td><?PHP echo $row['drphoto']; ?></td> -->
+                                                    <td><?PHP
                                                         if ($row['dr_available'] == 1)
                                                             echo '<span class="badge badge-success p-2 rounded-pill">Available</span>';
-                                                        else{
+                                                        else {
                                                             echo '<span class="badge badge-danger p-2 rounded-pill">Not Available</span>';
                                                         }
 
-                                                    ?></td>
-                                                </tr>     
+                                                        ?></td>
+                                                </tr>
                                             <?PHP } ?>
                                         </tbody>
-                                        <tfoot >
+                                        <tfoot>
                                             <tr>
                                                 <th class="fs-6">Driver ID</th>
                                                 <th>Driver Name</th>
@@ -341,38 +341,38 @@
                                         </thead>
                                         <tbody>
                                             <?PHP
-                                            $conn = mysqli_connect("localhost", "root", "", "fleet-management"); 
+                                            $conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
                                             $sql1 = "SELECT * FROM vehicle";
                                             $res1 = mysqli_query($conn, $sql1);
-                                            while ($row = MYSQLI_FETCH_ASSOC($res1)){ ?>
+                                            while ($row = MYSQLI_FETCH_ASSOC($res1)) { ?>
                                                 <tr>
-                                                    <td><?PHP echo $row['veh_id'];?></td>
-                                                    <td><?PHP echo strtoupper($row['veh_reg']);?></td>
-                                                    <td><?PHP echo $row['veh_type'];?></td>
-                                                    <td><?PHP echo $row['chesisno'];?></td>
-                                                    <td><?PHP echo $row['brand'];?></td>
-                                                    <td><?PHP echo $row['veh_description'];?></td>
-                                                    <td><?PHP 
+                                                    <td><?PHP echo $row['veh_id']; ?></td>
+                                                    <td><?PHP echo strtoupper($row['veh_reg']); ?></td>
+                                                    <td><?PHP echo $row['veh_type']; ?></td>
+                                                    <td><?PHP echo $row['chesisno']; ?></td>
+                                                    <td><?PHP echo $row['brand']; ?></td>
+                                                    <td><?PHP echo $row['veh_description']; ?></td>
+                                                    <td><?PHP
                                                         if ($row['veh_available'] == 1)
                                                             echo '<span class="badge badge-success p-2 rounded-pill">Available</span>';
-                                                        else{
+                                                        else {
                                                             echo '<span class="badge badge-danger p-2 rounded-pill">Not Available</span>';
                                                         }
-                                                    ?></td>
-                                                </tr>     
+                                                        ?></td>
+                                                </tr>
                                             <?PHP } ?>
                                         </tbody>
-                                        <tfoot >
+                                        <tfoot>
                                             <tr>
                                                 <<th>Vehicle ID</th>
-                                                <th>Vehicle PlatNumber</th>
-                                                <th>Vehicle Type</th>
-                                                <th>Vehicle Chassis Number</th>
-                                                <th>Vehicle Brand</th>
-                                                <!-- <th>Vehicle Color</th> -->
-                                                <!-- <th>Vehicle Registration Date</th> -->
-                                                <th>Vehicle Description</th>
-                                                <th>Vehicle Availability</th>
+                                                    <th>Vehicle PlatNumber</th>
+                                                    <th>Vehicle Type</th>
+                                                    <th>Vehicle Chassis Number</th>
+                                                    <th>Vehicle Brand</th>
+                                                    <!-- <th>Vehicle Color</th> -->
+                                                    <!-- <th>Vehicle Registration Date</th> -->
+                                                    <th>Vehicle Description</th>
+                                                    <th>Vehicle Availability</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -391,35 +391,35 @@
                                                 <th>Username</th>
                                                 <th>Salary</th>
                                                 <th>Equipment</th>
-                                                <th>Oil  </th>
+                                                <th>Oil </th>
                                                 <th>total Cost</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?PHP 
-                                                $conn = mysqli_connect("localhost", "root", "", "fleet-management");
-                                                $sql = "SELECT * FROM bill ";
-                                                $result = mysqli_query($conn, $sql);
-                                                while ($row = MYSQLI_FETCH_ASSOC($result)){ ?>
-                                                    <tr>
-                                                        <td><?PHP echo $row['bill_id'];?></td>
-                                                        <td><?PHP echo $row['id'];?></td>
-                                                        <td><?PHP echo $row['username'];?></td>
-                                                        <td><?PHP echo $row['salary'];?></td>
-                                                        <td><?PHP echo $row['equipment'];?></td>
-                                                        <td><?PHP echo $row['oil'];?></td>
-                                                        <td><?PHP echo $row['tcost'];?></td>
-                                                    </tr>     
+                                            <?PHP
+                                            $conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
+                                            $sql = "SELECT * FROM bill ";
+                                            $result = mysqli_query($conn, $sql);
+                                            while ($row = MYSQLI_FETCH_ASSOC($result)) { ?>
+                                                <tr>
+                                                    <td><?PHP echo $row['bill_id']; ?></td>
+                                                    <td><?PHP echo $row['id']; ?></td>
+                                                    <td><?PHP echo $row['username']; ?></td>
+                                                    <td><?PHP echo $row['salary']; ?></td>
+                                                    <td><?PHP echo $row['equipment']; ?></td>
+                                                    <td><?PHP echo $row['oil']; ?></td>
+                                                    <td><?PHP echo $row['tcost']; ?></td>
+                                                </tr>
                                             <?PHP } ?>
                                         </tbody>
-                                        <tfoot >
+                                        <tfoot>
                                             <tr>
                                                 <th>Bill ID</th>
                                                 <th>ID</th>
                                                 <th>Username</th>
                                                 <th>Salary</th>
                                                 <th>Equipment</th>
-                                                <th>Oil  </th>
+                                                <th>Oil </th>
                                                 <th>total Cost</th>
                                             </tr>
                                         </tfoot>
@@ -439,7 +439,7 @@
                                                 <th>Type</th>
                                                 <th>Request Date</th>
                                                 <th>Return Date</th>
-                                                <th>Destionation  </th>
+                                                <th>Destionation </th>
                                                 <th>Pickup Point</th>
                                                 <th>Reason</th>
                                                 <th>Confirmation</th>
@@ -448,56 +448,56 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?PHP 
-                                                $conn = mysqli_connect("localhost", "root", "", "fleet-management");
-                                                $sql = "SELECT * FROM booking ";
-                                                $result = mysqli_query($conn, $sql);
-                                                while ($row = MYSQLI_FETCH_ASSOC($result)){ ?>
-                                                    <tr>
-                                                        <td><?PHP echo $row['booking_id'];?></td>
-                                                        <td><?PHP echo $row['name'];?></td>
-                                                        <td><?PHP echo $row['type'];?></td>
-                                                        <td><?PHP echo $row['req_date'];?></td>
-                                                        <td><?PHP echo $row['ret_date'];?></td>
-                                                        <td><?PHP echo $row['destination'];?></td>
-                                                        <td><?PHP echo $row['pickup_point'];?></td>
-                                                        <td><?PHP echo $row['resons'];?></td>
-                                                        <td>
-                                                            <?php
-                                                                if ($row['confirmation'] == 1)
-                                                                    echo '<span class="badge badge-success p-2 rounded-pill">Confirmed</span>';
-                                                                else
-                                                                    echo '<span class="badge badge-warning p-2 rounded-pill">Not Confirmed</span>';
-                                                            ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php
-                                                                if ($row['finished'] == 1)
-                                                                    echo '<span class="badge badge-success p-2 rounded-pill">Finished</span>';
-                                                                else
-                                                                    echo '<span class="badge badge-warning p-2 rounded-pill">Not Finished</span>';
-                                                            ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php
-                                                                if ($row['paid'] == 1)
-                                                                    echo '<span class="badge badge-success p-2 rounded-pill">Paid</span>';
-                                                                else
-                                                                    echo '<span class="badge badge-warning p-2 rounded-pill">Not Paid</span>';
-                                                            ?>
-                                                        </td>
-                                                        
-                                                    </tr>     
+                                            <?PHP
+                                            $conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
+                                            $sql = "SELECT * FROM booking ";
+                                            $result = mysqli_query($conn, $sql);
+                                            while ($row = MYSQLI_FETCH_ASSOC($result)) { ?>
+                                                <tr>
+                                                    <td><?PHP echo $row['booking_id']; ?></td>
+                                                    <td><?PHP echo $row['name']; ?></td>
+                                                    <td><?PHP echo $row['type']; ?></td>
+                                                    <td><?PHP echo $row['req_date']; ?></td>
+                                                    <td><?PHP echo $row['ret_date']; ?></td>
+                                                    <td><?PHP echo $row['destination']; ?></td>
+                                                    <td><?PHP echo $row['pickup_point']; ?></td>
+                                                    <td><?PHP echo $row['resons']; ?></td>
+                                                    <td>
+                                                        <?php
+                                                        if ($row['confirmation'] == 1)
+                                                            echo '<span class="badge badge-success p-2 rounded-pill">Confirmed</span>';
+                                                        else
+                                                            echo '<span class="badge badge-warning p-2 rounded-pill">Not Confirmed</span>';
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php
+                                                        if ($row['finished'] == 1)
+                                                            echo '<span class="badge badge-success p-2 rounded-pill">Finished</span>';
+                                                        else
+                                                            echo '<span class="badge badge-warning p-2 rounded-pill">Not Finished</span>';
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php
+                                                        if ($row['paid'] == 1)
+                                                            echo '<span class="badge badge-success p-2 rounded-pill">Paid</span>';
+                                                        else
+                                                            echo '<span class="badge badge-warning p-2 rounded-pill">Not Paid</span>';
+                                                        ?>
+                                                    </td>
+
+                                                </tr>
                                             <?PHP } ?>
                                         </tbody>
-                                        <tfoot >
+                                        <tfoot>
                                             <tr>
                                                 <th>Booking ID</th>
                                                 <th>Name</th>
                                                 <th>Type</th>
                                                 <th>Request Date</th>
                                                 <th>Return Date</th>
-                                                <th>Destionation  </th>
+                                                <th>Destionation </th>
                                                 <th>Pickup Point</th>
                                                 <th>Reason</th>
                                                 <th>Confirmation</th>
@@ -511,7 +511,7 @@
                         </section>
                     </div>
                 </div>
-                
+
 
                 <!-- Control Sidebar -->
                 <aside class="control-sidebar control-sidebar-dark">
@@ -520,11 +520,11 @@
                 <!-- /.control-sidebar -->
         </div>
         <footer class="main-footer">
-                    <strong>Copyright &copy; 2021-2022 <a href="">Fleet System</a>.</strong>
-                    All rights reserved.
-                    <div class="float-right d-none d-sm-inline-block">
-                    </div>
-                </footer>
+            <strong>Copyright &copy; 2021-2022 <a href="">Fleet System</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+            </div>
+        </footer>
         <!-- ./wrapper -->
 
         <!-- jQuery -->
