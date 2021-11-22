@@ -13,7 +13,12 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Administrator</a>
+                <a href="#" class="d-block">
+                    <php 
+                        session_start();
+                        echo $_SESSION['username'];
+                    ?>
+                </a>
             </div>
         </div>
 
