@@ -1,8 +1,7 @@
 <?php
-
-$conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
+include 'server.php';
 $sql1 = "SELECT * FROM vihicle";
-$res1 = mysqli_query($conn, $sql1);
+$res1 = mysqli_query($connection, $sql1);
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -88,7 +87,7 @@ if (!isset($_SESSION)) {
                                     <h3>
                                         <?php
                                         $sql = "SELECT COUNT(*) as count FROM `user`;";
-                                        $res = mysqli_query($conn, $sql);
+                                        $res = mysqli_query($connection, $sql);
                                         $data = mysqli_fetch_assoc($res);
                                         echo $data['count'];
                                         ?>
@@ -110,7 +109,7 @@ if (!isset($_SESSION)) {
                                     <h3>
                                         <?php
                                         $sql = "SELECT COUNT(*) as count FROM `driver`;";
-                                        $res = mysqli_query($conn, $sql);
+                                        $res = mysqli_query($connection, $sql);
                                         $data = mysqli_fetch_assoc($res);
                                         echo $data['count'];
                                         ?>
@@ -133,7 +132,7 @@ if (!isset($_SESSION)) {
                                     <h3>
                                         <?php
                                         $sql = "SELECT COUNT(*) as count FROM `vehicle`;";
-                                        $res = mysqli_query($conn, $sql);
+                                        $res = mysqli_query($connection, $sql);
                                         $data = mysqli_fetch_assoc($res);
                                         echo $data['count'];
                                         ?>
@@ -155,7 +154,7 @@ if (!isset($_SESSION)) {
                                     <h3>
                                         <?php
                                         $sql = "SELECT COUNT(*) as count FROM `bill`;";
-                                        $res = mysqli_query($conn, $sql);
+                                        $res = mysqli_query($connection, $sql);
                                         $data = mysqli_fetch_assoc($res);
                                         echo $data['count'];
                                         ?>
@@ -178,7 +177,7 @@ if (!isset($_SESSION)) {
                                     <h3>
                                         <?php
                                         $sql = "SELECT COUNT(*) as count FROM `booking`;";
-                                        $res = mysqli_query($conn, $sql);
+                                        $res = mysqli_query($connection, $sql);
                                         $data = mysqli_fetch_assoc($res);
                                         echo $data['count'];
                                         ?>
@@ -220,9 +219,9 @@ if (!isset($_SESSION)) {
                                         </thead>
                                         <tbody>
                                             <?PHP
-                                            $conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
+                                            #$conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
                                             $sql = "SELECT * FROM user ";
-                                            $result = mysqli_query($conn, $sql);
+                                            $result = mysqli_query($connection, $sql);
                                             while ($row = MYSQLI_FETCH_ASSOC($result)) { ?>
                                                 <tr>
                                                     <td><?PHP echo $row['user_id']; ?></td>
@@ -280,9 +279,9 @@ if (!isset($_SESSION)) {
                                         </thead>
                                         <tbody>
                                             <?PHP
-                                            $conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
+                                            #$conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
                                             $sql = "SELECT * FROM driver ";
-                                            $result = mysqli_query($conn, $sql);
+                                            $result = mysqli_query($connection, $sql);
                                             while ($row = MYSQLI_FETCH_ASSOC($result)) { ?>
                                                 <tr>
                                                     <td><?PHP echo $row['driverid']; ?></td>
@@ -341,9 +340,9 @@ if (!isset($_SESSION)) {
                                         </thead>
                                         <tbody>
                                             <?PHP
-                                            $conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
+                                            #$conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
                                             $sql1 = "SELECT * FROM vehicle";
-                                            $res1 = mysqli_query($conn, $sql1);
+                                            $res1 = mysqli_query($connection, $sql1);
                                             while ($row = MYSQLI_FETCH_ASSOC($res1)) { ?>
                                                 <tr>
                                                     <td><?PHP echo $row['veh_id']; ?></td>
@@ -397,9 +396,9 @@ if (!isset($_SESSION)) {
                                         </thead>
                                         <tbody>
                                             <?PHP
-                                            $conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
+                                            #$conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
                                             $sql = "SELECT * FROM bill ";
-                                            $result = mysqli_query($conn, $sql);
+                                            $result = mysqli_query($connection, $sql);
                                             while ($row = MYSQLI_FETCH_ASSOC($result)) { ?>
                                                 <tr>
                                                     <td><?PHP echo $row['bill_id']; ?></td>
@@ -449,9 +448,9 @@ if (!isset($_SESSION)) {
                                         </thead>
                                         <tbody>
                                             <?PHP
-                                            $conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
+                                            #$conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
                                             $sql = "SELECT * FROM booking ";
-                                            $result = mysqli_query($conn, $sql);
+                                            $result = mysqli_query($connection, $sql);
                                             while ($row = MYSQLI_FETCH_ASSOC($result)) { ?>
                                                 <tr>
                                                     <td><?PHP echo $row['booking_id']; ?></td>
