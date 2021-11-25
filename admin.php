@@ -247,10 +247,10 @@ if (!isset($_SESSION)) {
                                             <tr>
                                                 <th>Driver ID</th>
                                                 <th>Vehicle ID</th>
-                                                <th>Driver National ID</th>
-                                                <th>Driver Driving License</th>
-                                                <th>Driver License Validity</th>
-                                                <th>Driver Full Name</th>
+                                                <th>National ID</th>
+                                                <th>Driving License</th>
+                                                <th>License Validity</th>
+                                                <th>Full Name</th>
                                                 <th>Driver email</th>
                                                 <th>Driver Address</th>
                                                 <th>Status</th>
@@ -286,10 +286,10 @@ if (!isset($_SESSION)) {
                                             <tr>
                                                 <th>Driver ID</th>
                                                 <th>Vehicle ID</th>
-                                                <th>Driver National ID</th>
-                                                <th>Driver Driving License</th>
-                                                <th>Driver License Validity</th>
-                                                <th>Driver Full Name</th>
+                                                <th>National ID</th>
+                                                <th>Driving License</th>
+                                                <th>License Validity</th>
+                                                <th>Full Name</th>
                                                 <th>Driver email</th>
                                                 <th>Driver Address</th>
                                                 <th>Status</th>
@@ -306,7 +306,6 @@ if (!isset($_SESSION)) {
                                     <table id="example1" class="table teble-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Vehicle ID</th>
                                                 <th>Vehicle PlatNumber</th>
                                                 <th>Vehicle Type</th>
                                                 <th>Vehicle Chassis Number</th>
@@ -322,14 +321,13 @@ if (!isset($_SESSION)) {
                                             $res1 = mysqli_query($connection, $sql1);
                                             while ($row = MYSQLI_FETCH_ASSOC($res1)) { ?>
                                                 <tr>
-                                                    <td><?PHP echo $row['veh_id']; ?></td>
-                                                    <td><?PHP echo strtoupper($row['veh_reg']); ?></td>
-                                                    <td><?PHP echo $row['veh_type']; ?></td>
-                                                    <td><?PHP echo $row['chesisno']; ?></td>
+                                                    <td><?PHP echo strtoupper($row['plate_number']); ?></td>
+                                                    <td><?PHP echo $row['vehicle_type']; ?></td>
+                                                    <td><?PHP echo $row['chasis_number']; ?></td>
                                                     <td><?PHP echo $row['brand']; ?></td>
-                                                    <td><?PHP echo $row['veh_description']; ?></td>
+                                                    <td><?PHP echo $row['vehicle_description']; ?></td>
                                                     <td><?PHP
-                                                        if ($row['veh_available'] == 1)
+                                                        if ($row['status'] == 1)
                                                             echo '<span class="badge badge-success p-2 rounded-pill">Available</span>';
                                                         else {
                                                             echo '<span class="badge badge-danger p-2 rounded-pill">Not Available</span>';
@@ -340,15 +338,12 @@ if (!isset($_SESSION)) {
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <<th>Vehicle ID</th>
-                                                    <th>Vehicle PlatNumber</th>
-                                                    <th>Vehicle Type</th>
-                                                    <th>Vehicle Chassis Number</th>
-                                                    <th>Vehicle Brand</th>
-                                                    <!-- <th>Vehicle Color</th> -->
-                                                    <!-- <th>Vehicle Registration Date</th> -->
-                                                    <th>Vehicle Description</th>
-                                                    <th>Vehicle Availability</th>
+                                                <th>Vehicle PlatNumber</th>
+                                                <th>Vehicle Type</th>
+                                                <th>Vehicle Chassis Number</th>
+                                                <th>Vehicle Brand</th>
+                                                <th>Vehicle Description</th>
+                                                <th>Vehicle Availability</th>
                                             </tr>
                                         </tfoot>
                                     </table>

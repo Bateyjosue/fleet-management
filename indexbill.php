@@ -1,9 +1,9 @@
 <?php
-$conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
-$sql = "SELECT * FROM bill ";
-$result = mysqli_query($conn, $sql);
+include 'server.php';
+$sql = "SELECT * FROM tbl_bill ";
+$result = mysqli_query($connection, $sql);
 if (!isset($_SESSION)) {
-  session_start();
+    session_start();
 }
 ?>
 
@@ -12,65 +12,160 @@ if (!isset($_SESSION)) {
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>Welcome to Vehicle Management</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-  <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="./slick/slick.css">
-  <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">
+    <meta charset="utf-8">
+    <title>Welcome to Vehicle Management</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="animate.css">
-  <link rel="stylesheet" href="style.css">
+</head>
 
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <?php include 'navbar_admin.php'; ?>
+        <?PHP include 'sidebar.php'; ?>
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Billing List</h1>
+                            <?php echo $msg; ?>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active"> Billing List</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- Small boxes (Stat box) -->
+                    <div class="row">
+                        <div class="col-lg-9 col-6 ">
+                            <div class="card-body">
+                                    <table id="example1" class="table teble-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Vehicle ID</th>
+                                                <th>Customer ID</th>
+                                                <th>Total Cost</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?PHP while ($row = mysqli_fetch_assoc($result)) { ?>
+                                                <td> <?php echo $row['id'] ?> </td>
+                                                <td> <?php echo $row['vehicle_id'] ?> </td>
+                                                <td> <?php echo $row['user_id'] ?> </td>
+                                                <td>
+                                                    <a class="btn btn-info" href="showbill.php?id=<?php echo $row['id']; ?>">View</a>
+                                                    <a class="btn btn-danger" onclick="return confirm('Are u sure?')" href="deletebill.php?id=<?php echo $row['id']; ?>">Delete</a>
+                                                </td>
+                                            <?php } ?>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Vehicle ID</th>
+                                                <th>Customer ID</th>
+                                                <th>Total Cost</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                            </div>
+                            <!-- <table id="myTable" class="table table-bordered">
 
+                                <thead>
+                                    <th>ID</th>
+                                    <th>Total Cost</th>
+                                    <th>Action</th>
+                                </thead>
 
+                                <tbody>
+                                    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                                        <tr>
+                                            <td> <?php echo $row['bill_id'] ?> </td>
+                                            <td> <?php echo $row['salary'] + $row['equipment'] + $row['oil'] ?> </td>
+                                            <td>
+                                                <a class="btn btn-info" href="showbill.php?id=<?php echo $row['bill_id']; ?>">View</a>
+                                                <a class="btn btn-primary" href="editbill.php?id=<?php echo $row['bill_id']; ?>">Edit</a>
+                                                <a class="btn btn-danger" onclick="return confirm('Are u sure?')" href="deletebill.php?id=<?php echo $row['bill_id']; ?>">Delete</a>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
 
-<body>
-  <?php include 'navbar_admin.php'; ?>
-  <br><br>
-  <div class="container">
+                            </table> -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- jQuery -->
+        <script src="plugins/jquery/jquery.min.js"></script>
+        <!-- jQuery UI 1.11.4 -->
+        <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 
-    <div class="row">
-      <div class="page header">
-        <h3 style="text-align: center;">Billing List</h3>
-
-      </div>
-
-      <table id="myTable" class="table table-bordered">
-
-        <thead>
-          <th>ID</th>
-          <th>Total Cost</th>
-          <th>Action</th>
-        </thead>
-
-        <tbody>
-          <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-            <tr>
-              <td> <?php echo $row['bill_id'] ?> </td>
-              <td> <?php echo $row['salary'] + $row['equipment'] + $row['oil'] ?> </td>
-              <td>
-                <a class="btn btn-info" href="showbill.php?id=<?php echo $row['bill_id']; ?>">View</a>
-                <a class="btn btn-primary" href="editbill.php?id=<?php echo $row['bill_id']; ?>">Edit</a>
-                <a class="btn btn-danger" onclick="return confirm('Are u sure?')" href="deletebill.php?id=<?php echo $row['bill_id']; ?>">Delete</a>
-              </td>
-            </tr>
-          <?php } ?>
-        </tbody>
-
-      </table>
-
+        <!-- Bootstrap 4 -->
+        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- ChartJS -->
+        <script src="plugins/chart.js/Chart.min.js"></script>
+        <!-- Sparkline -->
+        <script src="plugins/sparklines/sparkline.js"></script>
+        <!-- JQVMap -->
+        <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+        <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+        <!-- jQuery Knob Chart -->
+        <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+        <!-- daterangepicker -->
+        <script src="plugins/moment/moment.min.js"></script>
+        <script src="plugins/daterangepicker/daterangepicker.js"></script>
+        <!-- Tempusdominus Bootstrap 4 -->
+        <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+        <!-- Summernote -->
+        <script src="plugins/summernote/summernote-bs4.min.js"></script>
+        <!-- overlayScrollbars -->
+        <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="dist/js/adminlte.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="dist/js/demo.js"></script>
+        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+        <script src="dist/js/pages/dashboard.js"></script>
+        <script>
+            $.widget.bridge('uibutton', $.ui.button)
+        </script>
+        <script>
+            $(document).ready(function() {
+                $('#myTable').dataTable();
+            });
+        </script>
     </div>
-
-  </div>
 </body>
-<script>
-  $(document).ready(function() {
-    $('#myTable').dataTable();
-  });
-</script>
 
 </html>

@@ -2,29 +2,30 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-
-
-$connection = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
+// initialize connection
+include 'server.php';
 $msg = "";
 
 
 if (isset($_POST['submit'])) {
-    $drname = $_POST['drname'];
-    $drjoin = $_POST['drjoin'];
-    $drmobile = $_POST['drmobile'];
-    $drnid = $_POST['drnid'];
-    $drlicense = $_POST['drlicense'];
-    $drlicensevalid = $_POST['drlicensevalid'];
-    $draddress = $_POST['draddress'];
-    //$drphoto=$_FILES['file']['name'];
-    $drphoto = $_FILES['file']['name'];
+    $vehicle_id = $_POST['vehicle_id'];
+    $national_id = $_POST['national_id'];
+    $driving_license = $_POST['driving_license'];
+    $license_validity = $_POST['license_validity'];
+    $full_name = $_POST['full_name'];
+    $photo = $_FILES['file']['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    // $photo=$_FILES['file']['name'];
 
     //image Upload
 
     move_uploaded_file($_FILES['file']['tmp_name'], "picture/" . $_FILES['file']['name']);
 
     $res = false;
-    $insert_query = "INSERT INTO `driver`(`drname`, `drjoin`, `drmobile`, `drnid`, `drlicense`, `drlicensevalid`, `draddress`, `drphoto`) VALUES ('$drname','$drjoin','$drmobile','$drnid','$drlicense','$drlicensevalid','$draddress','$drphoto')";
+    $insert_query = "INSERT INTO `tbl_driver`(`vehicle_id`, `national_ID`, `driving_license`, `license_validity`, `full_name`, `phone`, `email`, `photo`, `address`) 
+    VALUES ('$vehicle_id','$national_id','$driving_license','$license_validity','$full_name','$phone','$email','$photo', '$address')";
 
     $res = mysqli_query($connection, $insert_query);
 
@@ -69,15 +70,6 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="sweetalert2/sweetalert2.css">
-        <script src="sweetalert2/sweetalert2.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="animate.css"> -->
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -111,59 +103,59 @@ if (isset($_POST['submit'])) {
                                 <div class="input-group d-flex mb-4">
                                     <div class="col-lg-2 pt-1">
                                         <label for="" class="">
-                                            <span class="input-group-addon"><b>Driver Name</b></span>
+                                            <span class="input-group-addon"><b>Vehicle ID</b></span>
                                         </label>
                                     </div>
                                     <div class="col-lg-10">
-                                        <input id="drname" type="text" class="form-control" name="drname" placeholder="Name">
+                                        <input id="drname" type="text" class="form-control" name="vehicle_id" placeholder="Vehicle PlatNumber">
                                     </div>
                                 </div>
                                 <div class="input-group d-flex mb-4">
                                     <div class="col-lg-2 pt-1">
-                                        <span class="input-group-addon mr-5"><b>Mobile</b></span>
+                                        <span class="input-group-addon mr-5"><b>National ID</b></span>
                                     </div>
                                     <div class="col-lg-10">
-                                        <input id="drmobile" type="text" class="form-control" name="drmobile" placeholder="Mobile No">
+                                        <input id="drmobile" type="text" class="form-control" name="national_id" placeholder="National ID">
                                     </div>
                                 </div>
                                 <div class="input-group d-flex mb-4">
                                     <div class="col-lg-2 pt-1">
-                                        <span class="input-group-addon"><b>Driver Joining Date</b></span>
+                                        <span class="input-group-addon"><b>Driving License</b></span>
                                     </div>
                                     <div class="col-lg-10">
-                                        <input id="drjoin" type="date" class="form-control" name="drjoin" placeholder="Joining date">
+                                        <input id="drjoin" type="text" class="form-control" name="driving_license" placeholder="Driving License">
                                     </div>
                                 </div>
                                 <div class="input-group d-flex mb-4">
                                     <div class="col-lg-2 pt-1">
-                                        <span class="input-group-addon"><b>National ID</b></span>
+                                        <span class="input-group-addon"><b>License Validity</b></span>
                                     </div>
                                     <div class="col-lg-10">
-                                        <input id="drnid" type="text" class="form-control" name="drnid" placeholder="Nid No">
+                                        <input id="drnid" type="date" class="form-control" name="drnid" placeholder="License Valid until">
                                     </div>
                                 </div>
                                 <div class="input-group d-flex mb-4">
                                     <div class="col-lg-2 pt-1">
-                                        <span class="input-group-addon"><b>License No</b></span>
+                                        <span class="input-group-addon"><b>Full Name</b></span>
                                     </div>
                                     <div class="col-lg-10">
-                                        <input id="drlicense" type="text" class="form-control" name="drlicense" placeholder="License No">
+                                        <input id="drlicense" type="text" class="form-control" name="full_name" placeholder="Full Name">
                                     </div>
                                 </div>
                                 <div class="input-group d-flex mb-4">
                                     <div class="col-lg-2 pt-1">
-                                        <span class="input-group-addon"><b>License End Date</b></span>
+                                        <span class="input-group-addon"><b>Phone</b></span>
                                     </div>
                                     <div class="col-lg-10">
-                                        <input id="drlicensevalid" type="date" class="form-control" name="drlicensevalid" placeholder="Validity date">
+                                        <input id="drlicensevalid" type="phone" class="form-control" name="phone" placeholder="Phone Number">
                                     </div>
                                 </div>
                                 <div class="input-group d-flex mb-4">
                                     <div class="col-lg-2 pt-1">
-                                        <span class="input-group-addon"><b>Driver Address</b></span>
+                                        <span class="input-group-addon"><b>Email Address</b></span>
                                     </div>
                                     <div class="col-lg-10">
-                                        <textarea rows="5" id="draddress" type="text" class="form-control" name="draddress" placeholder="Address"> </textarea>
+                                        <input id="drlicensevalid" type="email" class="form-control" name="email" placeholder="Email">
                                     </div>
                                 </div>
                                 <div class="input-group d-flex mb-4">
@@ -172,6 +164,14 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="col-lg-10 p-0">
                                         <input type="file" class="form-control p-1" name="file">
+                                    </div>
+                                </div>
+                                <div class="input-group d-flex mb-4">
+                                    <div class="col-lg-2 pt-1">
+                                        <span class="input-group-addon"><b>Address</b></span>
+                                    </div>
+                                    <div class="col-lg-10">
+                                        <input id="drlicensevalid" type="text" class="form-control" name="address" placeholder="Address">
                                     </div>
                                 </div>
                                 <div class="input-group d-flex mb-4">
@@ -221,6 +221,7 @@ if (isset($_POST['submit'])) {
         <script>
             $.widget.bridge('uibutton', $.ui.button)
         </script>
+    </div>
 </body>
 
 </html>

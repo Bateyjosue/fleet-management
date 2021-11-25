@@ -2,22 +2,22 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-$connection = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
+include 'server.php';
 $msg = "";
 if (isset($_POST['submit'])) {
-    $regno = $_POST['vehregno'];
+    $plate_number = $_POST['plate_number'];
     $type = $_POST['type'];
-    $chesisno = $_POST['vehchesis'];
-    $brand = $_POST['vehbrand'];
-    $color = $_POST['vehcolor'];
-    $regdate = $_POST['vehregdate'];
-    $description = $_POST['vehdescription'];
+    $chasis = $_POST['chasis'];
+    $brand = $_POST['brand'];
+    $color = $_POST['color'];
+    $description = $_POST['description'];
     $photo = $_FILES['file']['name'];
     //image Upload
     move_uploaded_file($_FILES['file']['tmp_name'], "vehicle picture/" . $_FILES['file']['name']);
     //move_uploaded_file($_FILES['file']['tmp_name'],"picture/".$_FILES['file']['name']); 
     $res = false;
-    $insert_query = "INSERT INTO `vehicle`(`veh_reg`, `veh_type`, `chesisno`, `brand`, `veh_color`, `veh_regdate`, `veh_description`, `veh_photo`) VALUES ('$regno','$type','$chesisno','$brand','$color','$regdate','$description','$photo')";
+    $insert_query = "INSERT INTO `tbl_vehicles`(`plate_number`, `vehicle_type`, `chasis_number`, `brand`, `color`, `vehicle_description`, `photo`) 
+    VALUES ('$plate_number','$type','$chasis','$brand','$color','$description','$photo')";
     $res = mysqli_query($connection, $insert_query);
     if ($res == true) {
         header("Location:admin.php");
@@ -29,6 +29,7 @@ if (isset($_POST['submit'])) {
                         );
                     </script>";
     }
+    $msg = 'Not Saved' . $res;
 }
 ?>
 <!DOCTYPE html>
@@ -99,10 +100,10 @@ if (isset($_POST['submit'])) {
                             <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
                                 <div class="input-group d-flex mb-4">
                                     <div class="col-lg-3 pt-2 ">
-                                        <span class="input-group-addon"><b>Registration Number</b></span>
+                                        <span class="input-group-addon"><b>PlatNumber</b></span>
                                     </div>
                                     <div class="col-lg-9 ">
-                                        <input id="vehreg" type="text" class="form-control" name="vehregno" placeholder="Reg No">
+                                        <input id="vehreg" type="text" class="form-control" name="plate_number" placeholder="Plate Number">
                                     </div>
                                 </div>
                                 <div class="input-group mb-4">
@@ -112,13 +113,13 @@ if (isset($_POST['submit'])) {
                                     <div class="col-lg-9">
                                         <label class="radio-inline mr-5">
                                             <div class="custom-control custom-radio">
-                                                <input class="custom-control-input custom-control-input-warning custom-control-input-outline" type="radio" id="bus" name="type">
+                                                <input class="custom-control-input custom-control-input-warning custom-control-input-outline" type="radio" id="bus" value="Bus" name="type">
                                                 <label for="bus" class="custom-control-label">BUS</label>
                                             </div>
                                         </label>
                                         <label class="radio-inline">
                                             <div class="custom-control custom-radio">
-                                                <input class="custom-control-input custom-control-input-warning custom-control-input-outline" type="radio" id="car" name="type">
+                                                <input class="custom-control-input custom-control-input-warning custom-control-input-outline" type="radio" id="car" value="Car" name="type">
                                                 <label for="car" class="custom-control-label">CAR</label>
                                             </div>
                                         </label>
@@ -126,10 +127,10 @@ if (isset($_POST['submit'])) {
                                 </div>
                                 <div class="input-group mb-4">
                                     <div class="col-lg-3 pt-1">
-                                        <span class="input-group-addon"><b>Chesis No</b></span>
+                                        <span class="input-group-addon"><b>Chassis Number</b></span>
                                     </div>
                                     <div class="col-lg-9">
-                                        <input id="vehchesis" type="text" class="form-control" name="vehchesis" placeholder="Chesis No">
+                                        <input id="vehchesis" type="text" class="form-control" name="chasis" placeholder="Chassis Number">
                                     </div>
                                 </div>
                                 <div class="input-group mb-4">
@@ -137,7 +138,7 @@ if (isset($_POST['submit'])) {
                                         <span class="input-group-addon"><b>Brand</b></span>
                                     </div>
                                     <div class="col-lg-9">
-                                        <input id="vehbrand" type="text" class="form-control" name="vehbrand" placeholder="Brand">
+                                        <input id="vehbrand" type="text" class="form-control" name="brand" placeholder="Eg: Benz">
                                     </div>
                                 </div>
                                 <div class="input-group mb-4">
@@ -145,15 +146,7 @@ if (isset($_POST['submit'])) {
                                         <span class="input-group-addon"><b>Color</b></span>
                                     </div>
                                     <div class="col-lg-9">
-                                        <input id="vehcolor" type="text" class="form-control" name="vehcolor" placeholder="Color">
-                                    </div>
-                                </div>
-                                <div class="input-group mb-4">
-                                    <div class="col-lg-3 pt-2">
-                                        <span class="input-group-addon"><b>Registration Date</b></span>
-                                    </div>
-                                    <div class="col-lg-9">
-                                        <input id="vehregdate" type="date" class="form-control" name="vehregdate" placeholder="Registration date">
+                                        <input id="vehcolor" type="text" class="form-control" name="color" placeholder="Eg: Gray">
                                     </div>
                                 </div>
                                 <div class="input-group mb-4">
@@ -161,7 +154,7 @@ if (isset($_POST['submit'])) {
                                         <span class="input-group-addon"><b>Description</b></span>
                                     </div>
                                     <div class="col-lg-9">
-                                        <textarea rows="5" id="draddress" type="text" class="form-control" name="vehdescription" placeholder="Address"> </textarea>
+                                        <textarea rows="5" id="draddress" type="text" class="form-control" name="description" placeholder="small description"> </textarea>
                                     </div>
                                 </div>
                                 <div class="input-group mb-4">
