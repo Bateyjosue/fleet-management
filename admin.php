@@ -187,12 +187,11 @@ if (!isset($_SESSION)) {
                                                 <th>User ID</th>
                                                 <th>Username </th>
                                                 <th>Password </th>
-                                                <th>User Full-Name</th>
                                                 <th>User Role</th>
+                                                <th>User Full-Name</th>
                                                 <th>User Department</th>
                                                 <th>User Email</th>
                                                 <th>User Phone</th>
-                                                <th>User Email</th>
                                                 <th>Status</th>
                                             </tr>
                                         </thead>
@@ -209,8 +208,8 @@ if (!isset($_SESSION)) {
                                                     <td><?PHP echo $row['user_role']; ?></td>
                                                     <td><?PHP echo $row['full_name']; ?></td>
                                                     <td><?PHP echo $row['department']; ?></td>
-                                                    <td><?PHP echo $row['phone']; ?></td>
                                                     <td><?PHP echo $row['email']; ?></td>
+                                                    <td><?PHP echo $row['phone']; ?></td>
                                                     <td><?PHP
                                                         if ($row['status'] == 1)
                                                             echo '<span class="badge badge-success p-2 rounded-pill">Active</span>';
@@ -227,12 +226,11 @@ if (!isset($_SESSION)) {
                                                 <th>User ID</th>
                                                 <th>Username </th>
                                                 <th>Password </th>
-                                                <th>User Full-Name</th>
                                                 <th>User Role</th>
+                                                <th>User Full-Name</th>
                                                 <th>User Department</th>
                                                 <th>User Email</th>
                                                 <th>User Phone</th>
-                                                <th>User Email</th>
                                                 <th>Status</th>
                                             </tr>
                                         </tfoot>
