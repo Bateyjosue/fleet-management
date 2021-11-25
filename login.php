@@ -1,19 +1,22 @@
 <?php
 session_start();
-$connection = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
-
+include 'server.php';
 $msg = "";
 if (isset($_POST['submit'])) {
   $username = mysqli_real_escape_string($connection, strtolower($_POST['username']));
 
   $password = mysqli_real_escape_string($connection, $_POST['password']);
 
-  $login_query = "SELECT * FROM `user` WHERE username='$username' and password='$password'";
+  $login_query = "SELECT * FROM `tbl_users` WHERE username='$username' and user_password='$password'";
 
   $login_res = mysqli_query($connection, $login_query);
+  $row = mysqli_fetch_assoc($login_res);
   if (mysqli_num_rows($login_res) > 0) {
     $_SESSION['username'] = $username;
-    header('Location:index.php');
+    if ($row['user_role'] == 1) {
+      header('Location:admin.php');
+    } else
+      header('Location:index.php');
   } else {
     $msg = '<div class="alert alert-danger alert-dismissable" style="margin-top:30px";>
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
