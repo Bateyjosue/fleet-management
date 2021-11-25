@@ -11,8 +11,7 @@ CREATE TABLE tbl_users(
     created_at timestamp not null default current_timestamp
 );
 CREATE TABLE tbl_vehicles(
-	id int AUTO_INCREMENT PRIMARY KEY,
-    plate_number varchar(50) not null UNIQUE,
+    plate_number varchar(50) primary key,
     vehicle_type varchar(50) not null,
     chasis_number varchar(50) not null UNIQUE,
     brand varchar(50) not null,
@@ -24,8 +23,8 @@ CREATE TABLE tbl_vehicles(
 );
 CREATE TABLE tbl_driver(
 	id int AUTO_INCREMENT PRIMARY KEY,
-    vehicle_id int,
-    national_id varchar(50) not null UNIQUE,
+    vehicle_id varchar(50),
+    national_ID varchar(50) not null UNIQUE,
     driving_license varchar(50) not null UNIQUE,
     license_validity varchar(50) not null,
     full_name varchar(100) not null,
@@ -37,6 +36,7 @@ CREATE TABLE tbl_driver(
     created_at timestamp not null default current_timestamp
 );
 CREATE TABLE tbl_book_trip(
+    id int auto_increment primary key,
 	user_id int not null,
     vehicle_id int not null,
     destination varchar(50) not null,
@@ -45,8 +45,16 @@ CREATE TABLE tbl_book_trip(
     estimated_km float not null,
     cost_km float not null default 2500.00,
     extra_cost float not null,
-    paid boolean default false,
-    confirm_trip boolean default false,
+    paid boolean default 0,
+    confirm_trip boolean default 0,
     status boolean not null default 1,
-    created_at timestamp not null default current_timestamp
+    created_at timestamp not null default current_timestamp,
 );
+alter table tbl_book_trip
+    add constraint FK_user_id foreign key (user_id) references tbl_users(id) on delete restrict on update cascade;
+
+alter table tbl_book_trip
+    add constraint FK_vehicle foreign key (vehicle_id) references tbl_vehicles(plate_number) on delete restrict on update cascade;
+
+alter table tbl_driver
+    add constraint FK_vehicle_id foreign key (vehicle_id) references tbl_vehicles(plate_number) on delete restrict on update cascade;

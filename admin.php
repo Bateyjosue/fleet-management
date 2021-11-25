@@ -86,7 +86,7 @@ if (!isset($_SESSION)) {
                                 <div class="inner">
                                     <h3>
                                         <?php
-                                        $sql = "SELECT COUNT(*) as count FROM `user`;";
+                                        $sql = "SELECT COUNT(*) as count FROM `tbl_users`;";
                                         $res = mysqli_query($connection, $sql);
                                         $data = mysqli_fetch_assoc($res);
                                         echo $data['count'];
@@ -108,7 +108,7 @@ if (!isset($_SESSION)) {
                                 <div class="inner">
                                     <h3>
                                         <?php
-                                        $sql = "SELECT COUNT(*) as count FROM `driver`;";
+                                        $sql = "SELECT COUNT(*) as count FROM `tbl_driver`;";
                                         $res = mysqli_query($connection, $sql);
                                         $data = mysqli_fetch_assoc($res);
                                         echo $data['count'];
@@ -131,7 +131,7 @@ if (!isset($_SESSION)) {
                                 <div class="inner">
                                     <h3>
                                         <?php
-                                        $sql = "SELECT COUNT(*) as count FROM `vehicle`;";
+                                        $sql = "SELECT COUNT(*) as count FROM `tbl_vehicles`;";
                                         $res = mysqli_query($connection, $sql);
                                         $data = mysqli_fetch_assoc($res);
                                         echo $data['count'];
@@ -149,34 +149,11 @@ if (!isset($_SESSION)) {
                         <!-- ./col -->
                         <div class="col-lg-3 col-6">
                             <!-- small box -->
-                            <div class="small-box bg-warning">
-                                <div class="inner">
-                                    <h3>
-                                        <?php
-                                        $sql = "SELECT COUNT(*) as count FROM `bill`;";
-                                        $res = mysqli_query($connection, $sql);
-                                        $data = mysqli_fetch_assoc($res);
-                                        echo $data['count'];
-                                        ?>
-                                        <!-- <h3><sup style="font-size: 20px">%</sup> -->
-                                    </h3>
-
-                                    <p>Billing</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-product"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
                             <div class="small-box bg-danger">
                                 <div class="inner">
                                     <h3>
                                         <?php
-                                        $sql = "SELECT COUNT(*) as count FROM `booking`;";
+                                        $sql = "SELECT COUNT(*) as count FROM `tbl_book_trip`;";
                                         $res = mysqli_query($connection, $sql);
                                         $data = mysqli_fetch_assoc($res);
                                         echo $data['count'];
@@ -208,34 +185,37 @@ if (!isset($_SESSION)) {
                                         <thead>
                                             <tr>
                                                 <th>User ID</th>
-                                                <th>User Fist-Name</th>
-                                                <th>User Last-name</th>
-                                                <th>User Email</th>
                                                 <th>Username </th>
                                                 <th>Password </th>
-                                                <th>Is Admin</th>
-                                                <th>User Availability</th>
+                                                <th>User Full-Name</th>
+                                                <th>User Role</th>
+                                                <th>User Department</th>
+                                                <th>User Email</th>
+                                                <th>User Phone</th>
+                                                <th>User Email</th>
+                                                <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?PHP
                                             #$conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
-                                            $sql = "SELECT * FROM user ";
+                                            $sql = "SELECT * FROM tbl_users ";
                                             $result = mysqli_query($connection, $sql);
                                             while ($row = MYSQLI_FETCH_ASSOC($result)) { ?>
                                                 <tr>
-                                                    <td><?PHP echo $row['user_id']; ?></td>
-                                                    <td><?PHP echo $row['first_name']; ?></td>
-                                                    <td><?PHP echo $row['last_name']; ?></td>
-                                                    <td><?PHP echo $row['email']; ?></td>
+                                                    <td><?PHP echo $row['id']; ?></td>
                                                     <td><?PHP echo $row['username']; ?></td>
-                                                    <td><?PHP echo substr(password_hash($row['password'], PASSWORD_DEFAULT), -12); ?></td>
-                                                    <td><?PHP echo $row['admin']; ?></td>
+                                                    <td><?PHP echo substr(password_hash($row['user_password'], PASSWORD_DEFAULT), -12); ?></td>
+                                                    <td><?PHP echo $row['user_role']; ?></td>
+                                                    <td><?PHP echo $row['full_name']; ?></td>
+                                                    <td><?PHP echo $row['department']; ?></td>
+                                                    <td><?PHP echo $row['phone']; ?></td>
+                                                    <td><?PHP echo $row['email']; ?></td>
                                                     <td><?PHP
-                                                        if ($row['available'] == 1)
-                                                            echo '<span class="badge badge-success p-2 rounded-pill">Available</span>';
+                                                        if ($row['status'] == 1)
+                                                            echo '<span class="badge badge-success p-2 rounded-pill">Active</span>';
                                                         else {
-                                                            echo '<span class="badge badge-danger p-2 rounded-pill">Not Available</span>';
+                                                            echo '<span class="badge badge-danger p-2 rounded-pill">Not Activate</span>';
                                                         }
 
                                                         ?></td>
@@ -245,13 +225,15 @@ if (!isset($_SESSION)) {
                                         <tfoot>
                                             <tr>
                                                 <th>User ID</th>
-                                                <th>User Fist-Name</th>
-                                                <th>User Last-name</th>
-                                                <th>User Email</th>
                                                 <th>Username </th>
                                                 <th>Password </th>
-                                                <th>Is Admin</th>
-                                                <th>User Availability</th>
+                                                <th>User Full-Name</th>
+                                                <th>User Role</th>
+                                                <th>User Department</th>
+                                                <th>User Email</th>
+                                                <th>User Phone</th>
+                                                <th>User Email</th>
+                                                <th>Status</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -266,35 +248,33 @@ if (!isset($_SESSION)) {
                                         <thead>
                                             <tr>
                                                 <th>Driver ID</th>
-                                                <th>Driver Name</th>
-                                                <!-- <th>Driver Joined</th> -->
-                                                <th>Driver Mobile</th>
+                                                <th>Vehicle ID</th>
                                                 <th>Driver National ID</th>
-                                                <th>Driver License</th>
-                                                <th>Driver License Valid</th>
-                                                <!-- <th>Driver Address</th> -->
-                                                <!-- <th>Driver Photo</th> -->
-                                                <th>Driver Available</th>
+                                                <th>Driver Driving License</th>
+                                                <th>Driver License Validity</th>
+                                                <th>Driver Full Name</th>
+                                                <th>Driver email</th>
+                                                <th>Driver Address</th>
+                                                <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?PHP
                                             #$conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
-                                            $sql = "SELECT * FROM driver ";
+                                            $sql = "SELECT * FROM tbl_driver ";
                                             $result = mysqli_query($connection, $sql);
                                             while ($row = MYSQLI_FETCH_ASSOC($result)) { ?>
                                                 <tr>
-                                                    <td><?PHP echo $row['driverid']; ?></td>
-                                                    <td><?PHP echo $row['drname']; ?></td>
-                                                    <!-- <td><?PHP echo $row['drjoin']; ?></td> -->
-                                                    <td><?PHP echo $row['drmobile']; ?></td>
-                                                    <td><?PHP echo $row['drnid']; ?></td>
-                                                    <td><?PHP echo $row['drlicense']; ?></td>
-                                                    <td><?PHP echo $row['drlicensevalid']; ?></td>
-                                                    <!-- <td><?PHP echo $row['draddress']; ?></td> -->
-                                                    <!-- <td><?PHP echo $row['drphoto']; ?></td> -->
+                                                    <td><?PHP echo $row['id']; ?></td>
+                                                    <td><?PHP echo $row['vehicle_id']; ?></td>
+                                                    <td><?PHP echo $row['national_id']; ?></td>
+                                                    <td><?PHP echo $row['driving_license']; ?></td>
+                                                    <td><?PHP echo $row['license_validity']; ?></td>
+                                                    <td><?PHP echo $row['full_name']; ?></td>
+                                                    <td><?PHP echo $row['email']; ?></td>
+                                                    <td><?PHP echo $row['address']; ?></td>
                                                     <td><?PHP
-                                                        if ($row['dr_available'] == 1)
+                                                        if ($row['status'] == 1)
                                                             echo '<span class="badge badge-success p-2 rounded-pill">Available</span>';
                                                         else {
                                                             echo '<span class="badge badge-danger p-2 rounded-pill">Not Available</span>';
@@ -306,16 +286,15 @@ if (!isset($_SESSION)) {
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th class="fs-6">Driver ID</th>
-                                                <th>Driver Name</th>
-                                                <!-- <th>Driver Joined</th> -->
-                                                <th>Driver Mobile</th>
+                                                <th>Driver ID</th>
+                                                <th>Vehicle ID</th>
                                                 <th>Driver National ID</th>
-                                                <th>Driver License</th>
-                                                <th>Driver License Valid</th>
-                                                <!-- <th>Driver Address</th> -->
-                                                <!-- <th>Driver Photo</th> -->
-                                                <th>Driver Available</th>
+                                                <th>Driver Driving License</th>
+                                                <th>Driver License Validity</th>
+                                                <th>Driver Full Name</th>
+                                                <th>Driver email</th>
+                                                <th>Driver Address</th>
+                                                <th>Status</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -341,7 +320,7 @@ if (!isset($_SESSION)) {
                                         <tbody>
                                             <?PHP
                                             #$conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
-                                            $sql1 = "SELECT * FROM vehicle";
+                                            $sql1 = "SELECT * FROM tbl_vehicles";
                                             $res1 = mysqli_query($connection, $sql1);
                                             while ($row = MYSQLI_FETCH_ASSOC($res1)) { ?>
                                                 <tr>
@@ -397,7 +376,7 @@ if (!isset($_SESSION)) {
                                         <tbody>
                                             <?PHP
                                             #$conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
-                                            $sql = "SELECT * FROM bill ";
+                                            $sql = "SELECT * FROM tbl_book_tri[ ";
                                             $result = mysqli_query($connection, $sql);
                                             while ($row = MYSQLI_FETCH_ASSOC($result)) { ?>
                                                 <tr>
@@ -449,7 +428,7 @@ if (!isset($_SESSION)) {
                                         <tbody>
                                             <?PHP
                                             #$conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
-                                            $sql = "SELECT * FROM booking ";
+                                            $sql = "SELECT * FROM tbl_book_trip ";
                                             $result = mysqli_query($connection, $sql);
                                             while ($row = MYSQLI_FETCH_ASSOC($result)) { ?>
                                                 <tr>
