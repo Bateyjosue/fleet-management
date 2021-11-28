@@ -58,7 +58,7 @@ $row = mysqli_fetch_assoc($result);
       <div class="col-md-3"></div>
       <div class="col-md-6">
         <form class="animated bounce" action="bookingaction.php" method="post">
-
+            user_id, vehicle_id,
           <div class="input-group">
             <span class="input-group-addon"><b>Name</b></span>
             <input id="name" type="text" class="form-control" name="name" value="<?php echo $row['first_name'] . " " . $row['last_name']; ?>" required>

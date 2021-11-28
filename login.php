@@ -13,6 +13,7 @@ if (isset($_POST['submit'])) {
   $row = mysqli_fetch_assoc($login_res);
   if (mysqli_num_rows($login_res) > 0) {
     $_SESSION['username'] = $username;
+    $_SESSION['id'] = $row['id'];
     if ($row['user_role'] == 1) {
       header('Location:admin.php');
     } else
@@ -43,7 +44,7 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-  <?php include 'navbar.php'; ?>
+  <!-- <?php include 'navbar.php'; ?> -->
 
 
   <br>
@@ -76,7 +77,7 @@ if (isset($_POST['submit'])) {
         </form>
         <br>
         <div class="input-group">
-          <a href="login_admin.php">Admin Login</a>
+        Don't Account?<a href="signup.php"> Registrer Now</a>
         </div>
 
       </div>

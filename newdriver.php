@@ -70,6 +70,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -131,7 +132,7 @@ if (isset($_POST['submit'])) {
                                         <span class="input-group-addon"><b>License Validity</b></span>
                                     </div>
                                     <div class="col-lg-10">
-                                        <input id="drnid" type="date" class="form-control" name="drnid" placeholder="License Valid until">
+                                        <input id="drnid" type="date" class="form-control" name="license_validity" placeholder="License Valid until">
                                     </div>
                                 </div>
                                 <div class="input-group d-flex mb-4">

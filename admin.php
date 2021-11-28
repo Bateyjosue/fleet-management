@@ -263,7 +263,7 @@ if (!isset($_SESSION)) {
                                             $result = mysqli_query($connection, $sql);
                                             while ($row = MYSQLI_FETCH_ASSOC($result)) { ?>
                                                 <tr>
-                                                    <td><?PHP echo $row['id']; ?></td>
+                                                    <td><?PHP echo $row['id']; ?><a href="editdriver.php?id=<?php echo $row['id'] ?>"><i class="fa fa-edit ml-2 fs-4" aria-hidden="true"></i></a></td>
                                                     <td><?PHP echo $row['vehicle_id']; ?></td>
                                                     <td><?PHP echo $row['national_id']; ?></td>
                                                     <td><?PHP echo $row['driving_license']; ?></td>
@@ -351,67 +351,19 @@ if (!isset($_SESSION)) {
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Billing Information</h3>
-                                </div>
-                                <div class="card-body">
-                                    <table id="example1" class="table teble-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Bill ID</th>
-                                                <th>ID</th>
-                                                <th>Username</th>
-                                                <th>Salary</th>
-                                                <th>Equipment</th>
-                                                <th>Oil </th>
-                                                <th>total Cost</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?PHP
-                                            #$conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
-                                            $sql = "SELECT * FROM tbl_book_tri[ ";
-                                            $result = mysqli_query($connection, $sql);
-                                            while ($row = MYSQLI_FETCH_ASSOC($result)) { ?>
-                                                <tr>
-                                                    <td><?PHP echo $row['bill_id']; ?></td>
-                                                    <td><?PHP echo $row['id']; ?></td>
-                                                    <td><?PHP echo $row['username']; ?></td>
-                                                    <td><?PHP echo $row['salary']; ?></td>
-                                                    <td><?PHP echo $row['equipment']; ?></td>
-                                                    <td><?PHP echo $row['oil']; ?></td>
-                                                    <td><?PHP echo $row['tcost']; ?></td>
-                                                </tr>
-                                            <?PHP } ?>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Bill ID</th>
-                                                <th>ID</th>
-                                                <th>Username</th>
-                                                <th>Salary</th>
-                                                <th>Equipment</th>
-                                                <th>Oil </th>
-                                                <th>total Cost</th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
                                     <h3 class="card-title">Booking Information</h3>
                                 </div>
                                 <div class="card-body">
                                     <table id="example1" class="table teble-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Booking ID</th>
-                                                <th>Name</th>
-                                                <th>Type</th>
+                                                <th>#</th>
+                                                <th>Plate Number</th>
+                                                <th>User ID</th>
+                                                <th>Destination </th>
+                                                <th>Pickup Point</th>
                                                 <th>Request Date</th>
                                                 <th>Return Date</th>
-                                                <th>Destionation </th>
-                                                <th>Pickup Point</th>
                                                 <th>Reason</th>
                                                 <th>Confirmation</th>
                                                 <th>Finished</th>
@@ -425,13 +377,13 @@ if (!isset($_SESSION)) {
                                             $result = mysqli_query($connection, $sql);
                                             while ($row = MYSQLI_FETCH_ASSOC($result)) { ?>
                                                 <tr>
-                                                    <td><?PHP echo $row['booking_id']; ?></td>
-                                                    <td><?PHP echo $row['name']; ?></td>
-                                                    <td><?PHP echo $row['type']; ?></td>
-                                                    <td><?PHP echo $row['req_date']; ?></td>
-                                                    <td><?PHP echo $row['ret_date']; ?></td>
+                                                    <td><?PHP echo $row['id']; ?></td>
+                                                    <td><?PHP echo $row['vehicle_id']; ?></td>
+                                                    <td><?PHP echo $row['user_id']; ?></td>
                                                     <td><?PHP echo $row['destination']; ?></td>
                                                     <td><?PHP echo $row['pickup_point']; ?></td>
+                                                    <td><?PHP echo $row['created_at']; ?></td>
+                                                    <td><?PHP echo $row['return_date']; ?></td>
                                                     <td><?PHP echo $row['resons']; ?></td>
                                                     <td>
                                                         <?php
@@ -463,13 +415,13 @@ if (!isset($_SESSION)) {
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>Booking ID</th>
-                                                <th>Name</th>
-                                                <th>Type</th>
+                                                <th>#</th>
+                                                <th>Plate Number</th>
+                                                <th>User ID</th>
+                                                <th>Destination </th>
+                                                <th>Pickup Point</th>
                                                 <th>Request Date</th>
                                                 <th>Return Date</th>
-                                                <th>Destionation </th>
-                                                <th>Pickup Point</th>
                                                 <th>Reason</th>
                                                 <th>Confirmation</th>
                                                 <th>Finished</th>

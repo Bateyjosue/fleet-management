@@ -22,6 +22,8 @@ session_start();
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="animate.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+
 
 
 
@@ -63,38 +65,70 @@ session_start();
     background-color: ghostwhite;
     transition: background-color 200ms linear;
   }
+  nav a{
+    color: white;
+    text-transform: uppercase;
+    font-size:14px;
+  }
+  nav a i{
+    font-size:19px;
+    /* margin-top: 15px !important; */
+    padding-top: -5px !important;
+    margin-right: 10px;
+  }
+  nav a:hover{
+    text-decoration: none;
+    border-bottom: 3px solid white;
+    border-top: 3px solid white;
+    /* border-radius: 0% 100% 100% 100%; */
+  }
 </style>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50" onload="myFunction()">
-
-
-
-
-
-
-
-
-  <!--
-    <div>  
-       <div class="jumbotron">
-          <h2 class="animated bounce">Ruet Vehicle Management</h2>      
-          <p>A management system where you can easily manage vehicles.</p>
-        </div>
-           
-       
-        
-    </div> 
-    -->
   <div class="parallax foo">
-    <?php include 'navbar.php'; ?>
+  <nav class="navbar" style="background: rgb(0,0,0,.5) !important; display: flex; line-height:50px; ">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav" style="flex: 1; list-style-type: none; " >
+        <!-- <li class="nav-item">
+            <a class="nav-link" data-widget="menu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li> -->
+        <li class="nav-item d-none d-sm-inline-block" style="margin-right: 25px;">
+            <a href="index.php" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="buslist.php" class="nav-link">Vehicles</a>
+        </li>
+    </ul>
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto" style="margin-right:30px; list-style-type: none;">
+        <?php if (isset($_SESSION['username']) == true) {?>
+        <li class="nav-item dropdown" style="margin-right: 25px;">
+            <a href="./logout.php" class="nav-link" data-toggle="dropdown" href="#">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>Logout
+            </a>
+        </li>
+        <li class="nav-item dropdown">
+        <a href="./mybill.php" class="nav-link" data-toggle="dropdown" href="#">
+            <i class="fa fa-user-circle pt-1 mr-1" style=""></i><?php echo $_SESSION['username']; ?>
+        </a>
+        </li>
+        <?php } else { ?>
+        <li class="nav-item dropdown" style="margin-right: 25px;">
+            <a href="./logout.php" class="nav-link" data-toggle="dropdown" href="#">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>Login
+            </a>
+        </li>
+        <?php }?>
+    </ul>
+</nav>
 
-    <div class="hero-text" style="font-size:50px text-align: center; position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);color: white;">
+    <div class="hero-text" style="font-size:50px; text-align: center; position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);color: white;">
 
-      <h1 class="animated rubberBand">Ruet Vehicle Management System</h1>
+      <h1 class="animated rubberBand">Fleet Management System</h1>
       <p>A management system where you can easily manage vehicles</p>
 
       <?php if (isset($_SESSION['username']) == true) { ?>
-        <a class="btn btn-success" style="text-align: center" href="booking.php">Book a Vehicle</a>
+        <a class="btn btn-success" style="text-align: center" href="buslist.php">Book a Vehicle</a>
 
       <?php } else {  ?>
         <a class="btn btn-success" style="text-align: center" href="login.php">Login To Book A Vehicle</a>
@@ -116,7 +150,8 @@ session_start();
         </div>
         <div class="col-md-6">
           <br>
-          <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d932412.1267521078!2d88.9639724042315!3d24.093234513307983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x39fbefd0a55ea957%3A0x2f9cac3357d62617!2sRajshahi+University+of+Engineering+%26+Technology%2C+6204%2C%2C+Rajshahi+-+Dhaka+Hwy%2C+Rajshahi!3m2!1d24.363568299999997!2d88.6283773!4m5!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2sDhaka!3m2!1d23.810332!2d90.4125181!5e0!3m2!1sen!2sbd!4v1522267261303" width="500" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+          <iframe src="https://maps.google.com/maps?q=rwanda&t=k&z=7&ie=UTF8&iwloc=&output=embed" width="500" height="350" frameborder="0" style="border:0" allowfullscreen>
+          </iframe>
           <p>The Bus Route</p>
         </div>
       </div>

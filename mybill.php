@@ -4,18 +4,16 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-$username = $_GET['id'];
+$username = $_SESSION['username'];
+include 'server.php';
 //echo $username;
+$sql  = "SELECT * FROM tbl_users WHERE username = '$username'";
+$res = mysqli_query($connection,$sql);
+$rw = mysqli_fetch_assoc($res);
+$id = $rw['id'];
 
-$connection = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
-
-$query = "SELECT booking.booking_id, booking.req_date,booking.`ret_date`, booking.`destination`, booking.`veh_reg`, booking.`driverid`, tripcost.total_km,tripcost.oil_cost, tripcost.extra_cost,tripcost.total_cost,tripcost.paid FROM `booking` LEFT JOIN `tripcost` ON booking.username=tripcost.username WHERE booking.username='$username' AND booking.booking_id=tripcost.booking_id;";
-
-//echo $query;
-
+$query = "SELECT * FROM tbl_book_trip WHERE user_id = $id";
 $result = mysqli_query($connection, $query);
-
-
 ?>
 
 
@@ -25,77 +23,143 @@ $result = mysqli_query($connection, $query);
 <head>
     <meta charset="UTF-8">
     <title>Bill</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
-    <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="./slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="animate.css">
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <?php include 'navbar.php'; ?>
-
-    <div class="container">
-        <div class="row">
-            <div class="page-header">
-                <h1 style="text-align: center;">My Bill</h1>
+    <div class="wrapper">
+        <?php include 'navbar.php'; ?>
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">My Bill Information</h1>
+                            <?php echo $msg; ?>
+                        </div>
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
             </div>
-        </div>
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- Small boxes (Stat box) -->
+                    <div class="row">
+                        <div class="col-lg-12 col-6 ">
+                            <table id="example1" class="table teble-bordered table-striped">
+                                <thead>
+                                    
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Plate Number</th>
+                                        <th>User ID</th>
+                                        <th>Destination </th>
+                                        <th>Pickup Point</th>
+                                        <th>Request Date</th>
+                                        <th>Return Date</th>
+                                        <th>Reason</th>
+                                        <th>Cost</th>
+                                        <th>Confirmation</th>
+                                        <th>Finished</th>
+                                        <th>Paid</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?PHP
+                                    while ($row = MYSQLI_FETCH_ASSOC($result)) { ?>
+                                        <tr>
+                                            <td><?PHP echo $row['id']; ?></td>
+                                            <td><?PHP echo $row['vehicle_id']; ?></td>
+                                            <td><?PHP echo $row['user_id']; ?></td>
+                                            <td><?PHP echo $row['destination']; ?></td>
+                                            <td><?PHP echo $row['pickup_point']; ?></td>
+                                            <td><?PHP echo $row['created_at']; ?></td>
+                                            <td><?PHP echo $row['return_date']; ?></td>
+                                            <td><?PHP echo $row['resons']; ?></td>
+                                            <td>
+                                                <?PHP echo ($row['estimated_km'] * $row['cost_km']) + $row['extra_cost']; ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($row['confirmation'] == 1)
+                                                    echo '<span class="badge badge-success p-2 rounded-pill">Confirmed</span>';
+                                                else
+                                                    echo '<span class="badge badge-warning p-2 rounded-pill">Not Confirmed</span>';
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($row['finished'] == 1)
+                                                    echo '<span class="badge badge-success p-2 rounded-pill">Finished</span>';
+                                                else
+                                                    echo '<span class="badge badge-warning p-2 rounded-pill">Not Finished</span>';
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                if ($row['paid'] == 1)
+                                                    echo '<span class="badge badge-success p-2 rounded-pill">Paid</span>';
+                                                else
+                                                    echo '<span class="badge badge-warning p-2 rounded-pill">Not Paid</span>';
+                                                ?>
+                                            </td>
 
-
-        <div class="col-md-12">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Booking Id</th>
-                        <th>Requested Date</th>
-                        <th>Return Date</th>
-                        <th>Destination</th>
-                        <th>Vehicle Registration</th>
-                        <th>Driver</th>
-                        <th>Total Km</th>
-                        <th>Oil Cost</th>
-                        <th>Extra Cost</th>
-                        <th>Total Cost</th>
-                        <th>Paid</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <?php
-                    while ($row = mysqli_fetch_assoc($result)) {
-
-                    ?>
-                        <tr>
-                            <td><?php echo $row['booking_id']; ?></td>
-                            <td><?php echo $row['req_date']; ?></td>
-                            <td><?php echo $row['ret_date']; ?></td>
-                            <td><?php echo $row['destination']; ?></td>
-                            <td><a href="busprofile.php?busid=<?php echo $row['veh_reg'] ?>"><?php echo $row['veh_reg'] ?></a></td>
-                            <td><a href="driverprofile.php?driverid=<?php echo $row['driverid'] ?>"><?php echo $row['driverid'] ?></a></td>
-
-                            <td><?php echo $row['total_km']; ?></td>
-                            <td><?php echo $row['oil_cost']; ?></td>
-                            <td><?php echo $row['extra_cost']; ?></td>
-                            <td><?php echo $row['total_cost']; ?></td>
-
-                            <?php if ($row['paid'] == '0') { ?>
-                                <td>No</td>
-                            <?php } else { ?>
-                                <td>Yes</td>
-                            <?php }  ?>
-                        </tr>
-                </tbody>
-            <?php } ?>
-            </table>
+                                        </tr>
+                                    <?PHP } ?>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Plate Number</th>
+                                        <th>User ID</th>
+                                        <th>Destination </th>
+                                        <th>Pickup Point</th>
+                                        <th>Request Date</th>
+                                        <th>Return Date</th>
+                                        <th>Reason</th>
+                                        <th>Cost</th>
+                                        <th>Confirmation</th>
+                                        <th>Finished</th>
+                                        <th>Paid</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- bs-custom-file-input -->
+    <script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../dist/js/demo.js"></script>
+
 </body>
 
 </html>
