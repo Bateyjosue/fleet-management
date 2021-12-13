@@ -15,18 +15,18 @@
     <ul class="navbar-nav ml-auto">
         <?php if (isset($_SESSION['username']) == true) {?>
         <li class="nav-item dropdown">
-            <a href="./logout.php" class="nav-link" data-toggle="dropdown" href="#">
-                <i class="fa fa-sign-out" aria-hidden="true"></i>Logout
+            <a href="./logout.php" class="nav-link">
+            <i class="fa fa-arrow-circle-o-right bg-dark"></i>Logout
             </a>
         </li>
         <li class="nav-item dropdown">
-        <a href="./mybill.php" class="nav-link" data-toggle="dropdown" href="#">
-            <i class="fa fa-user-circle"></i><?php echo $_SESSION['username'].'/'.$_SESSION['id']; ?>
+        <a href="./mybill.php" class="nav-link" >
+            <i class="fa fa-user-circle"></i><?php echo $_SESSION['username'] ?>
         </a>
         </li>
         <?php } else { ?>
         <li class="nav-item dropdown">
-            <a href="./logout.php" class="nav-link" data-toggle="dropdown" href="#">
+            <a href="./login.php" class="nav-link">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>Login
             </a>
         </li>

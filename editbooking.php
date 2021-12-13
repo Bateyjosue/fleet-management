@@ -20,9 +20,10 @@ if (isset($_POST['update'])) {
     if ($result == true) {
         header('location:admin.php');
     } else {
-        $msg = die('Unsuccessful' . mysqli_error($connection));
+        $msg = die('Unsuccessful ' . mysqli_error($connection));
     }
 }
+mysqli_close($connection);
 ?>
 <!DOCTYPE html>
 <html lang="en">

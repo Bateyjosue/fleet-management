@@ -47,7 +47,6 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
-    <?php include 'navbar.php'; ?>
     <br>
     <div class="container">
         <div class="row">
@@ -98,6 +97,9 @@ if (isset($_POST['submit'])) {
                         <button type="submit" name="submit" class="btn btn-success">Sign Up</button>
                     </div>
                 </form>
+                <div>
+                    <a href="login.php">Sign in</a>
+                </div>
             </div>
             <div class="col-md-3"></div>
         </div>

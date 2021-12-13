@@ -13,9 +13,12 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">
-                    Administrator
+                <a href="#" class="d-block text-steal">
+                    Administrator:
                 </a>
+                <div class="text-light pt-3">
+                    <?php echo strtoupper($_SESSION['username'])?>
+                </div>
             </div>
         </div>
 
@@ -35,7 +38,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+            with font-awesome or any other icon font library -->
                 <li class="nav-item menu-open">
                     <a href="admin.php" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -82,7 +85,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="trip_details.php" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
@@ -90,7 +93,7 @@
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-header">EXAMPLES</li>
                 <!-- <li class="nav-item">
               <a href="pages/calendar.html" class="nav-link">

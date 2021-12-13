@@ -6,25 +6,18 @@ if (!isset($_SESSION)) {
 include 'server.php';
 $msg = "";
 
-$id = $_GET['id'];
-$query = "SELECT * FROM tbl_driver WHERE id='$id'";
+$id = $_GET['plate'];
+$query = "SELECT * FROM tbl_vehicles WHERE plate_number='$id'";
 $result = mysqli_query($connection, $query);
 $rows = mysqli_fetch_assoc($result);
 
 if (isset($_POST['submit'])) {
-    $vehicle_id = $_POST['vehicle_id'];
-    $national_id = $_POST['national_id'];
-    $driving_license = $_POST['driving_license'];
-    $license_validity = $_POST['license_validity'];
-    $full_name = $_POST['full_name'];
-    if ($_FILES['file']['name']){
-        $photo = $_FILES['file']['name'];
-    } else{
-        $photo = $_POST['photo_name'];
-    }
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $address = $_POST['address'];
+    $vehicle_type = $_POST['vehicle_type'];
+    $chasis_number = $_POST['chasis_number'];
+    $brand = $_POST['brand'];
+    $color = $_POST['color'];
+    $vehicle_description = $_POST['vehicle_desciption'];
+    $photo = $_FILES['file']['name'];
     $status = $_POST['status'];
     // $photo=$_FILES['file']['name'];
 
@@ -33,9 +26,8 @@ if (isset($_POST['submit'])) {
     move_uploaded_file($_FILES['file']['tmp_name'], "picture/" . $_FILES['file']['name']);
 
     $res = false;
-    $insert_query = "UPDATE  `tbl_driver` SET `vehicle_id`= '$vehicle_id', `national_ID` = '$national_id', `driving_license` = '$driving_license',
-                    `license_validity` = '$license_validity', `full_name`= '$full_name', `phone` = '$phone', `email`= '$email', 
-                    `photo` = '$photo', `address` ='$address', `status`='$status' where id= '$id'";
+    $insert_query = "UPDATE  `tbl_vehicles` SET `vehicle_type`= '$vehicle_type', `chasis_number` = '$chasis_number', `brand` = '$brand', 
+                    `color` = '$color', `photo` ='$photo', `vehicle_description`='$vehicle_description', `status`='$status' where plate_number= '$id'";
 
     $res = mysqli_query($connection, $insert_query);
 
@@ -93,7 +85,7 @@ if (isset($_POST['submit'])) {
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Update Driver Information</h1>
+                            <h1 class="m-0">Update Vehicle Information</h1>
                             <?php echo $msg; ?>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
@@ -114,93 +106,73 @@ if (isset($_POST['submit'])) {
                                 <div class="input-group d-flex mb-4">
                                     <div class="col-lg-2 pt-1">
                                         <label for="" class="">
-                                            <span class="input-group-addon"><b>Vehicle ID</b></span>
+                                            <span class="input-group-addon"><b>Plate Number</b></span>
                                         </label>
                                     </div>
                                     <div class="col-lg-10">
-                                        <input id="drname" type="text" class="form-control" name="vehicle_id" placeholder="Vehicle PlatNumber" value="<?php echo $rows['vehicle_id'] ?>">
+                                        <input id="drname" type="text" class="form-control" name="plate_number" placeholder="Vehicle PlatNumber" value="<?php echo $rows['plate_number'] ?>" disabled>
                                     </div>
                                 </div>
                                 <div class="input-group d-flex mb-4">
                                     <div class="col-lg-2 pt-1">
-                                        <span class="input-group-addon mr-5"><b>National ID</b></span>
+                                        <span class="input-group-addon mr-5"><b>Vehicle Type</b></span>
                                     </div>
                                     <div class="col-lg-10">
-                                        <input id="drmobile" type="text" class="form-control" name="national_id" placeholder="National ID" value="<?php echo $rows['national_ID'] ?>">
+                                        <input id="drmobile" type="text" class="form-control" name="vehicle_type" placeholder="National ID" value="<?php echo $rows['vehicle_type'] ?>">
                                     </div>
                                 </div>
                                 <div class="input-group d-flex mb-4">
                                     <div class="col-lg-2 pt-1">
-                                        <span class="input-group-addon"><b>Driving License</b></span>
+                                        <span class="input-group-addon"><b>Chasis Number</b></span>
                                     </div>
                                     <div class="col-lg-10">
-                                        <input id="drjoin" type="text" class="form-control" name="driving_license" placeholder="Driving License" value="<?php echo $rows['driving_license'] ?>">
+                                        <input id="drjoin" type="text" class="form-control" name="chasis_number" placeholder="Driving License" value="<?php echo $rows['chasis_number'] ?>">
                                     </div>
                                 </div>
                                 <div class="input-group d-flex mb-4">
                                     <div class="col-lg-2 pt-1">
-                                        <span class="input-group-addon"><b>License Validity</b></span>
+                                        <span class="input-group-addon"><b>Brand</b></span>
                                     </div>
                                     <div class="col-lg-10">
-                                        <input id="drnid" type="date" class="form-control" name="license_validity" placeholder="License Valid until" value="<?php echo $rows['license_validity'] ?>">
+                                        <input id="drnid" type="text" class="form-control" name="brand" placeholder="Ex: Audi" value="<?php echo $rows['brand'] ?>">
                                     </div>
                                 </div>
                                 <div class="input-group d-flex mb-4">
                                     <div class="col-lg-2 pt-1">
-                                        <span class="input-group-addon"><b>Full Name</b></span>
+                                        <span class="input-group-addon"><b>Color</b></span>
                                     </div>
                                     <div class="col-lg-10">
-                                        <input id="drlicense" type="text" class="form-control" name="full_name" placeholder="Full Name" value="<?php echo $rows['full_name'] ?>">
+                                        <input id="drlicense" type="text" class="form-control" name="color" placeholder="Full Name" value="<?php echo $rows['color'] ?>">
                                     </div>
-                                </div>
-                                <div class="input-group d-flex mb-4">
-                                    <div class="col-lg-2 pt-1">
-                                        <span class="input-group-addon"><b>Phone</b></span>
-                                    </div>
-                                    <div class="col-lg-10">
-                                        <input id="drlicensevalid" type="phone" class="form-control" name="phone" placeholder="Phone Number" value="<?php echo $rows['phone'] ?>">
-                                    </div>
-                                </div>
-                                <div class="input-group d-flex mb-4">
-                                    <div class="col-lg-2 pt-1">
-                                        <span class="input-group-addon"><b>Email Address</b></span>
-                                    </div>
-                                    <div class="col-lg-10">
-                                        <input id="drlicensevalid" type="email" class="form-control" name="email" placeholder="Email" value="<?php echo $rows['email'] ?>">
-                                    </div>
-                                </div>
-                                <div class="input-group d-flex mb-4 pl-5">
-                                    <img src="./picture/drivers/<?php echo $rows['photo'] ?>" alt="" height="120" width="120">
-                                    <input type="text" name="photo_name" id="" value="<?php echo $rows['photo'] ?>">
                                 </div>
                                 <div class="input-group d-flex mb-4">
                                     <div class="col-lg-2 pt-1">
                                         <span class="input-group-addon"><b>Photo</b></span>
                                     </div>
                                     <div class="col-lg-10 p-0">
-                                        <input type="file" class="form-control p-1" name="file" value="<?php echo $rows['photo'] ?>">
+                                        <input type="file" class="form-control p-1" name="file" value="picture/<?php echo $rows['photo'] ?>">
                                     </div>
                                 </div>
                                 <div class="input-group d-flex mb-4">
                                     <div class="col-lg-2 pt-1">
-                                        <span class="input-group-addon"><b>Address</b></span>
+                                        <span class="input-group-addon"><b>Description</b></span>
                                     </div>
                                     <div class="col-lg-10">
-                                        <input id="drlicensevalid" type="text" class="form-control" name="address" placeholder="Address" value="<?php echo $rows['address'] ?>">
+                                        <input id="drlicensevalid" type="text" class="form-control" name="vehicle_desciption" placeholder="Address" value="<?php echo $rows['vehicle_description'] ?>">
                                     </div>
                                 </div>
                                 <div class="input-group d-flex mb-4">
                                     <div class="col-lg-2 pt-1">
-                                        <span class="input-group-addon"><b>Address</b></span>
+                                        <span class="input-group-addon"><b>Status</b></span>
                                     </div>
                                     <div class="col-lg-10">
-                                        <input type="radio" name="status" id="" value="1" class="mr-2 mt-1" <?php if ($rows['status'] ==1) echo 'checked';?>> Available
-                                        <input type="radio" name="status" id="" value="0" class="mr-2 ml-4 mt-1" <?php if ($rows['status'] ==0) echo 'checked';?>>  Unavailable
+                                        <input type="radio" name="status" id="" value="1" class="mr-2 mt-1" <?php if ($rows['status'] == 1) echo 'checked'; ?>> Available
+                                        <input type="radio" name="status" id="" value="0" class="mr-2 ml-4 mt-1" <?php if ($rows['status'] == 0) echo 'checked'; ?>> Unavailable
                                     </div>
                                 </div>
                                 <div class="input-group d-flex mb-4">
                                     <div class="col-lg-7">
-                                </div>
+                                    </div>
                                     <input type="submit" name="submit" class="btn btn-primary rounded-pill fs-4 align-right col-lg-5 icon-fa-arrow p-2">
                                 </div>
                             </form>

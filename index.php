@@ -65,18 +65,21 @@ session_start();
     background-color: ghostwhite;
     transition: background-color 200ms linear;
   }
-  nav a{
+
+  nav a {
     color: white;
     text-transform: uppercase;
-    font-size:14px;
+    font-size: 14px;
   }
-  nav a i{
-    font-size:19px;
+
+  nav a i {
+    font-size: 19px;
     /* margin-top: 15px !important; */
     padding-top: -5px !important;
     margin-right: 10px;
   }
-  nav a:hover{
+
+  nav a:hover {
     text-decoration: none;
     border-bottom: 3px solid white;
     border-top: 3px solid white;
@@ -86,41 +89,41 @@ session_start();
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50" onload="myFunction()">
   <div class="parallax foo">
-  <nav class="navbar" style="background: rgb(0,0,0,.5) !important; display: flex; line-height:50px; ">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav" style="flex: 1; list-style-type: none; " >
+    <nav class="navbar" style="background: rgb(0,0,0,.5) !important; display: flex; line-height:50px; ">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav" style="flex: 1; list-style-type: none; ">
         <!-- <li class="nav-item">
             <a class="nav-link" data-widget="menu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li> -->
         <li class="nav-item d-none d-sm-inline-block" style="margin-right: 25px;">
-            <a href="index.php" class="nav-link">Home</a>
+          <a href="index.php" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="buslist.php" class="nav-link">Vehicles</a>
+          <a href="buslist.php" class="nav-link">Vehicles</a>
         </li>
-    </ul>
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto" style="margin-right:30px; list-style-type: none;">
-        <?php if (isset($_SESSION['username']) == true) {?>
-        <li class="nav-item dropdown" style="margin-right: 25px;">
-            <a href="./logout.php" class="nav-link" data-toggle="dropdown" href="#">
-                <i class="fa fa-sign-out" aria-hidden="true"></i>Logout
+      </ul>
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto" style="margin-right:30px; list-style-type: none;">
+        <?php if (isset($_SESSION['username']) == true) { ?>
+          <li class="nav-item dropdown" style="margin-right: 25px;">
+            <a href="./logout.php" class="nav-link">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>Logout
             </a>
-        </li>
-        <li class="nav-item dropdown">
-        <a href="./mybill.php" class="nav-link" data-toggle="dropdown" href="#">
-            <i class="fa fa-user-circle pt-1 mr-1" style=""></i><?php echo $_SESSION['username']; ?>
-        </a>
-        </li>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="./mybill.php" class="nav-link">
+              <i class="fa fa-user-circle pt-1 mr-1" style=""></i><?php echo $_SESSION['username']; ?>
+            </a>
+          </li>
         <?php } else { ?>
-        <li class="nav-item dropdown" style="margin-right: 25px;">
-            <a href="./logout.php" class="nav-link" data-toggle="dropdown" href="#">
-                <i class="fa fa-sign-out" aria-hidden="true"></i>Login
+          <li class="nav-item dropdown" style="margin-right: 25px;">
+            <a href="./login.php" class="nav-link">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>Login
             </a>
-        </li>
-        <?php }?>
-    </ul>
-</nav>
+          </li>
+        <?php } ?>
+      </ul>
+    </nav>
 
     <div class="hero-text" style="font-size:50px; text-align: center; position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);color: white;">
 
@@ -199,7 +202,7 @@ session_start();
   <footer style="background-color: #2f2f2f;
           color: #fff; padding-top: 70px;
           padding-bottom: 70px;" class="container-fluid text-center">
-    <p>All rights reserved by IAF</p>
+    <p>Developed by NSENGIYUMVA Diane</p>
   </footer>
 
 

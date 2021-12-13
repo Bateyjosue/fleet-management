@@ -8,7 +8,7 @@ $username = $_SESSION['username'];
 include 'server.php';
 //echo $username;
 $sql  = "SELECT * FROM tbl_users WHERE username = '$username'";
-$res = mysqli_query($connection,$sql);
+$res = mysqli_query($connection, $sql);
 $rw = mysqli_fetch_assoc($res);
 $id = $rw['id'];
 
@@ -23,6 +23,7 @@ $result = mysqli_query($connection, $query);
 <head>
     <meta charset="UTF-8">
     <title>Bill</title>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -68,7 +69,7 @@ $result = mysqli_query($connection, $query);
                         <div class="col-lg-12 col-6 ">
                             <table id="example1" class="table teble-bordered table-striped">
                                 <thead>
-                                    
+
                                     <tr>
                                         <th>#</th>
                                         <th>Plate Number</th>
@@ -77,16 +78,17 @@ $result = mysqli_query($connection, $query);
                                         <th>Pickup Point</th>
                                         <th>Request Date</th>
                                         <th>Return Date</th>
-                                        <th>Reason</th>
-                                        <th>Cost</th>
-                                        <th>Confirmation</th>
-                                        <th>Finished</th>
+                                        <th>Total Cost</th>
+                                        <th>Trip Confirmation</th>
+                                        <th>Trip Status</th>
                                         <th>Paid</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?PHP
-                                    while ($row = MYSQLI_FETCH_ASSOC($result)) { ?>
+                                    while ($row = MYSQLI_FETCH_ASSOC($result)) {
+                                        if($row){
+                                        ?>
                                         <tr>
                                             <td><?PHP echo $row['id']; ?></td>
                                             <td><?PHP echo $row['vehicle_id']; ?></td>
@@ -95,13 +97,12 @@ $result = mysqli_query($connection, $query);
                                             <td><?PHP echo $row['pickup_point']; ?></td>
                                             <td><?PHP echo $row['created_at']; ?></td>
                                             <td><?PHP echo $row['return_date']; ?></td>
-                                            <td><?PHP echo $row['resons']; ?></td>
                                             <td>
                                                 <?PHP echo ($row['estimated_km'] * $row['cost_km']) + $row['extra_cost']; ?>
                                             </td>
                                             <td>
                                                 <?php
-                                                if ($row['confirmation'] == 1)
+                                                if ($row['confirm_trip'] == 1)
                                                     echo '<span class="badge badge-success p-2 rounded-pill">Confirmed</span>';
                                                 else
                                                     echo '<span class="badge badge-warning p-2 rounded-pill">Not Confirmed</span>';
@@ -109,8 +110,8 @@ $result = mysqli_query($connection, $query);
                                             </td>
                                             <td>
                                                 <?php
-                                                if ($row['finished'] == 1)
-                                                    echo '<span class="badge badge-success p-2 rounded-pill">Finished</span>';
+                                                if ($row['status'] == 1)
+                                                    echo '<span class="badge badge-info p-2 rounded-pill">Pending</span>';
                                                 else
                                                     echo '<span class="badge badge-warning p-2 rounded-pill">Not Finished</span>';
                                                 ?>
@@ -125,7 +126,12 @@ $result = mysqli_query($connection, $query);
                                             </td>
 
                                         </tr>
-                                    <?PHP } ?>
+                                    <?PHP 
+                                        }else{
+                                            echo '<td colspan="11" class="text-center"><span class="badge badge-"> NOT DATA FOUND AT THE MOMENT</spam></td>';
+                                        }
+                                    }
+                                    ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -136,10 +142,9 @@ $result = mysqli_query($connection, $query);
                                         <th>Pickup Point</th>
                                         <th>Request Date</th>
                                         <th>Return Date</th>
-                                        <th>Reason</th>
-                                        <th>Cost</th>
-                                        <th>Confirmation</th>
-                                        <th>Finished</th>
+                                        <th>Total Cost</th>
+                                        <th>Trip Confirmation</th>
+                                        <th>Trip Status</th>
                                         <th>Paid</th>
                                     </tr>
                                 </tfoot>

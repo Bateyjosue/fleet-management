@@ -1,8 +1,9 @@
 <?php
-    
     session_start();
+    unset($_SESSION["id"]);
+    unset($_SESSION["username"]);
+    header("Location: index.php");
+    
+    // session_start();
     //echo $_SESSION['user'];
-    session_destroy();
     //echo 'session has destroyed';
-   header ("Location: index.php");
-?>

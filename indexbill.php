@@ -1,6 +1,6 @@
 <?php
 include 'server.php';
-$sql = "SELECT * FROM tbl_bill ";
+$sql = "SELECT * FROM tbl_book_trip ";
 $result = mysqli_query($connection, $sql);
 if (!isset($_SESSION)) {
     session_start();
@@ -65,61 +65,43 @@ if (!isset($_SESSION)) {
                     <div class="row">
                         <div class="col-lg-9 col-6 ">
                             <div class="card-body">
-                                    <table id="example1" class="table teble-bordered table-striped">
-                                        <thead>
+                                <table id="example1" class="table teble-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Vehicle ID</th>
+                                            <th>Customer ID</th>
+                                            <th>Total Cost</th>
+                                            <th><center>Action</center></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?PHP while ($row = mysqli_fetch_assoc($result)) { ?>
                                             <tr>
-                                                <th>#</th>
-                                                <th>Vehicle ID</th>
-                                                <th>Customer ID</th>
-                                                <th>Total Cost</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?PHP while ($row = mysqli_fetch_assoc($result)) { ?>
                                                 <td> <?php echo $row['id'] ?> </td>
                                                 <td> <?php echo $row['vehicle_id'] ?> </td>
                                                 <td> <?php echo $row['user_id'] ?> </td>
                                                 <td>
-                                                    <a class="btn btn-info" href="showbill.php?id=<?php echo $row['id']; ?>">View</a>
-                                                    <a class="btn btn-danger" onclick="return confirm('Are u sure?')" href="deletebill.php?id=<?php echo $row['id']; ?>">Delete</a>
+                                                    <?php echo ($row['estimated_km'] *  $row['cost_km']) + $row['extra_cost'] ?>
                                                 </td>
-                                            <?php } ?>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Vehicle ID</th>
-                                                <th>Customer ID</th>
-                                                <th>Total Cost</th>
-                                                <th>Action</th>
+                                                <td style="text-align: center;">
+                                                    <a class="btn btn-info rounded-pill pr-2 pl-2" href="showbill.php?id=<?php echo $row['id']; ?>">View</a>
+                                                    <!-- <a class="btn btn-danger rounded-pill p-1" onclick="return confirm('Are u sure?')" href="deletebill.php?id=<?php echo $row['id']; ?>">Delete</a> -->
+                                                </td>
                                             </tr>
-                                        </tfoot>
-                                    </table>
-                            </div>
-                            <!-- <table id="myTable" class="table table-bordered">
-
-                                <thead>
-                                    <th>ID</th>
-                                    <th>Total Cost</th>
-                                    <th>Action</th>
-                                </thead>
-
-                                <tbody>
-                                    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                                        <?php } ?>
+                                    </tbody>
+                                    <tfoot>
                                         <tr>
-                                            <td> <?php echo $row['bill_id'] ?> </td>
-                                            <td> <?php echo $row['salary'] + $row['equipment'] + $row['oil'] ?> </td>
-                                            <td>
-                                                <a class="btn btn-info" href="showbill.php?id=<?php echo $row['bill_id']; ?>">View</a>
-                                                <a class="btn btn-primary" href="editbill.php?id=<?php echo $row['bill_id']; ?>">Edit</a>
-                                                <a class="btn btn-danger" onclick="return confirm('Are u sure?')" href="deletebill.php?id=<?php echo $row['bill_id']; ?>">Delete</a>
-                                            </td>
+                                            <th>#</th>
+                                            <th>Vehicle ID</th>
+                                            <th>Customer ID</th>
+                                            <th>Total Cost</th>
+                                            <th><center>Action</center></th>
                                         </tr>
-                                    <?php } ?>
-                                </tbody>
-
-                            </table> -->
+                                    </tfoot>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

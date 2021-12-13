@@ -50,13 +50,13 @@
 
         <!-- Messages Dropdown Menu -->
         <li class="nav-item dropdown">
-            <a href="./logout.php" class="nav-link" data-toggle="dropdown" href="#">
+            <a href="./logout_admin.php" class="nav-link" data-toggle="dropdown" href="#">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>Logout
             </a>
         </li>
         <li class="nav-item dropdown">
-            <a href="./index.php" class="nav-link" data-toggle="dropdown" href="#">
-                <i class="fa fa-sign-in"></i>Visit <--WEBSITE-->
+            <a href="index.php" class="nav-link" data-toggle="dropdown" href="#">
+                <i class="fa fa-home pr-2"></i>Visit <--WEBSITE-->
             </a>
         </li>
         <!-- <li class="nav-item">

@@ -2,33 +2,44 @@
 include 'server.php';
 session_start();
 $user = $_SESSION['username'];
-$s = "SELECT * FROM `tbl_users` WHERE username='$user'";
-$r = mysqli_query($connection, $s);
-$rw = mysqli_fetch_assoc($r);
+$useri = $_SESSION['id'];
 $id = $_GET['id'];
-$sql = "SELECT * FROM `tbl_book_trip` WHERE id='$id'";
-$res = mysqli_query($connection, $sql);
-$row = mysqli_fetch_assoc($res);
+$user_id = (int)$useri;
+echo $user_id;
+if ($_SESSION['id'] == '') {
+    header('Location:login.php');
+} else {
+    // header('Location:book.php');
+    $s = "SELECT * FROM `tbl_users` WHERE username='$user'";
+    $r = mysqli_query($connection, $s);
+    $rw = mysqli_fetch_assoc($r);
 
-if (isset($_POST['book'])) {
-    $user_id = $_POST['user_id'];
-    $vehicle_id = $_POST['vehicle_id'];
-    $destination = $_POST['destination'];
-    $pickup = $_POST['pickup'];
-    $return_date = $_POST['return_date'];
-    $estimated_km = $_POST['estimated_km'];
-    $cost_km = $_POST['cost_km'];
-    $extra_cost = $_POST['extra_cost'];
-    $insert = "INSERT INTO `tbl_book_trip`(`user_id`, `vehicle_id`, `destination`,`pickup_point`,`return_date`,`estimated_km`,`extra_cost`)
-        VALUES ('$user_id','$id','$destination','$pickup','$return_date',$estimated_km, $extra_cost);";
+    $sql = "SELECT * FROM `tbl_book_trip` WHERE id='$id'";
+    $res = mysqli_query($connection, $sql);
+    $row = mysqli_fetch_assoc($res);
 
-    $result = mysqli_query($connection, $insert);
-    if ($result == true) {
-        header('location:index.php');
-    } else {
-        $msg = die('Unsuccessful' . mysqli_error($connection));
+    if (isset($_POST['book'])) {
+        $user_id = $_POST['user_id'];
+        $vehicle_id = $_POST['vehicle_id'];
+        $destination = $_POST['destination'];
+        $pickup = $_POST['pickup'];
+        $return_date = $_POST['return_date'];
+        $estimated_km = $_POST['estimated_km'];
+        $cost_km = $_POST['cost'];
+        $extra_cost = $_POST['extra_cost'];
+                $insert = "INSERT INTO `tbl_book_trip`(`user_id`, `vehicle_id`, `destination`,`pickup_point`,`return_date`,`estimated_km`, `cost_km`,`extra_cost`)
+                    VALUES ($useri,'$id','$destination','$pickup','$return_date',$estimated_km,$cost_km, $extra_cost);";
+                $result = mysqli_query($connection, $insert);
+                if ($result == true) {
+                    $query = "UPDATE `tbl_vehicles` SET `status` = 0 WHERE `vehicle_id` = $id";
+                    $r = mysqli_query($connection, $query);
+                    header('location:index.php');
+                } else {
+                    $msg = die('Unsuccessful' . mysqli_error($connection));
+                }
     }
 }
+mysqli_close($connection);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,7 +96,7 @@ if (isset($_POST['book'])) {
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="User ID" name="user_id" value="<?php echo $rw['id']; ?>">
+                                    <input type="text" class="form-control" placeholder="User ID" name="user_id" value="<?php echo $user_id; ?>" disabled>
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">

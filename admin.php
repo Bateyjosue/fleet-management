@@ -80,7 +80,7 @@ if (!isset($_SESSION)) {
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <div class="col-lg-2 col-5">
+                        <div class="col-lg-4 col-5">
                             <!-- small box -->
                             <div class="small-box bg-info">
                                 <div class="inner">
@@ -104,7 +104,7 @@ if (!isset($_SESSION)) {
                         </div>
                         <div class="col-lg-2 col-6">
                             <!-- small box -->
-                            <div class="small-box bg-info">
+                            <div class="small-box bg-dark">
                                 <div class="inner">
                                     <h3>
                                         <?php
@@ -147,7 +147,7 @@ if (!isset($_SESSION)) {
                             </div>
                         </div>
                         <!-- ./col -->
-                        <div class="col-lg-3 col-6">
+                        <div class="col-lg-4 col-6">
                             <!-- small box -->
                             <div class="small-box bg-danger">
                                 <div class="inner">
@@ -184,7 +184,7 @@ if (!isset($_SESSION)) {
                                     <table id="example1" class="table teble-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>User ID</th>
+                                                <th>#</th>
                                                 <th>Username </th>
                                                 <th>Password </th>
                                                 <th>User Role</th>
@@ -202,7 +202,7 @@ if (!isset($_SESSION)) {
                                             $result = mysqli_query($connection, $sql);
                                             while ($row = MYSQLI_FETCH_ASSOC($result)) { ?>
                                                 <tr>
-                                                    <td><?PHP echo $row['id']; ?></td>
+                                                    <td><?PHP echo $row['id']; ?> <a href=""><i class="fa fa-edit ml-2 fs-6"></i></a></td>
                                                     <td><?PHP echo $row['username']; ?></td>
                                                     <td><?PHP echo substr(password_hash($row['user_password'], PASSWORD_DEFAULT), -12); ?></td>
                                                     <td><?PHP echo $row['user_role']; ?></td>
@@ -251,6 +251,7 @@ if (!isset($_SESSION)) {
                                                 <th>Driving License</th>
                                                 <th>License Validity</th>
                                                 <th>Full Name</th>
+                                                <th>Photo</th>
                                                 <th>Driver email</th>
                                                 <th>Driver Address</th>
                                                 <th>Status</th>
@@ -258,17 +259,17 @@ if (!isset($_SESSION)) {
                                         </thead>
                                         <tbody>
                                             <?PHP
-                                            #$conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
                                             $sql = "SELECT * FROM tbl_driver ";
                                             $result = mysqli_query($connection, $sql);
                                             while ($row = MYSQLI_FETCH_ASSOC($result)) { ?>
                                                 <tr>
-                                                    <td><?PHP echo $row['id']; ?><a href="editdriver.php?id=<?php echo $row['id'] ?>"><i class="fa fa-edit ml-2 fs-4" aria-hidden="true"></i></a></td>
+                                                    <td><?PHP echo $row['id']; ?><a href="editdriver.php?id=<?php echo $row['id'] ?>"><i class="fa fa-edit ml-2" aria-hidden="true"></i></a></td>
                                                     <td><?PHP echo $row['vehicle_id']; ?></td>
-                                                    <td><?PHP echo $row['national_id']; ?></td>
+                                                    <td><?PHP echo $row['national_ID']; ?></td>
                                                     <td><?PHP echo $row['driving_license']; ?></td>
                                                     <td><?PHP echo $row['license_validity']; ?></td>
                                                     <td><?PHP echo $row['full_name']; ?></td>
+                                                    <td><?PHP echo $row['photo']; ?></td>
                                                     <td><?PHP echo $row['email']; ?></td>
                                                     <td><?PHP echo $row['address']; ?></td>
                                                     <td><?PHP
@@ -290,6 +291,7 @@ if (!isset($_SESSION)) {
                                                 <th>Driving License</th>
                                                 <th>License Validity</th>
                                                 <th>Full Name</th>
+                                                <th>Photo</th>
                                                 <th>Driver email</th>
                                                 <th>Driver Address</th>
                                                 <th>Status</th>
@@ -316,12 +318,11 @@ if (!isset($_SESSION)) {
                                         </thead>
                                         <tbody>
                                             <?PHP
-                                            #$conn = mysqli_connect("begl9q2aqo2yag9pw4jb-mysql.services.clever-cloud.com", "ubeptibrepcuncym", "NGuqOFbgyHyLwhJC67JL", "begl9q2aqo2yag9pw4jb");
                                             $sql1 = "SELECT * FROM tbl_vehicles";
                                             $res1 = mysqli_query($connection, $sql1);
                                             while ($row = MYSQLI_FETCH_ASSOC($res1)) { ?>
                                                 <tr>
-                                                    <td><?PHP echo strtoupper($row['plate_number']); ?></td>
+                                                    <td><a href="editvehicle.php?plate=<?php echo $row['plate_number'] ?>"><i class="fa fa-edit mr-2" aria-hidden="true"></i></a><?PHP echo strtoupper($row['plate_number']); ?></td>
                                                     <td><?PHP echo $row['vehicle_type']; ?></td>
                                                     <td><?PHP echo $row['chasis_number']; ?></td>
                                                     <td><?PHP echo $row['brand']; ?></td>
@@ -366,7 +367,7 @@ if (!isset($_SESSION)) {
                                                 <th>Return Date</th>
                                                 <th>Reason</th>
                                                 <th>Confirmation</th>
-                                                <th>Finished</th>
+                                                <th>Trip Status</th>
                                                 <th>Paid</th>
                                             </tr>
                                         </thead>
@@ -382,12 +383,12 @@ if (!isset($_SESSION)) {
                                                     <td><?PHP echo $row['user_id']; ?></td>
                                                     <td><?PHP echo $row['destination']; ?></td>
                                                     <td><?PHP echo $row['pickup_point']; ?></td>
-                                                    <td><?PHP echo $row['created_at']; ?></td>
+                                                    <td><?PHP echo substr($row['created_at'], 0, 10); ?></td>
                                                     <td><?PHP echo $row['return_date']; ?></td>
                                                     <td><?PHP echo $row['resons']; ?></td>
                                                     <td>
                                                         <?php
-                                                        if ($row['confirmation'] == 1)
+                                                        if ($row['confirm_trip'] == 1)
                                                             echo '<span class="badge badge-success p-2 rounded-pill">Confirmed</span>';
                                                         else
                                                             echo '<span class="badge badge-warning p-2 rounded-pill">Not Confirmed</span>';
@@ -395,10 +396,10 @@ if (!isset($_SESSION)) {
                                                     </td>
                                                     <td>
                                                         <?php
-                                                        if ($row['finished'] == 1)
-                                                            echo '<span class="badge badge-success p-2 rounded-pill">Finished</span>';
+                                                        if ($row['status'] == 1)
+                                                            echo '<span class="badge badge-info p-2 rounded-pill">Pending</span>';
                                                         else
-                                                            echo '<span class="badge badge-warning p-2 rounded-pill">Not Finished</span>';
+                                                            echo '<span class="badge badge-warning p-2 rounded-pill">Finished</span>';
                                                         ?>
                                                     </td>
                                                     <td>
@@ -424,7 +425,7 @@ if (!isset($_SESSION)) {
                                                 <th>Return Date</th>
                                                 <th>Reason</th>
                                                 <th>Confirmation</th>
-                                                <th>Finished</th>
+                                                <th>Trip Status</th>
                                                 <th>Paid</th>
                                             </tr>
                                         </tfoot>
@@ -444,7 +445,7 @@ if (!isset($_SESSION)) {
         </div>
         <footer class="main-footer">
             <strong>Copyright &copy; 2021-2022 <a href="">Fleet System</a>.</strong>
-            All rights reserved.
+            Developed by NSENGIYUNVA Diane
             <div class="float-right d-none d-sm-inline-block">
             </div>
         </footer>

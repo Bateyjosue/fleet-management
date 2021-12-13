@@ -1,9 +1,15 @@
 <?php
 include 'server.php';
 session_start();
-
-$sql = "SELECT * FROM `tbl_vehicles`";
+$user = $_SESSION['id'];
+$sql = "SELECT * FROM `vehicle_list`";
 $res = mysqli_query($connection, $sql);
+// $rs = mysqli_fetch_assoc($res);
+//     $plate = $rs['plate_number'];
+// $sql = "SELECT * FROM `tbl_driver` where `vehicle_id`= '$plate";
+// $result = mysqli_query($connection, $sql);
+// $rw = mysqli_fetch_assoc($result);
+// $full = $rs['full_name'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,13 +52,13 @@ $res = mysqli_query($connection, $sql);
 
         <?php include 'navbar.php'; ?>
         <br><br><br>
-        <div class="container">
+        <div class="">
             <?php
             if (mysqli_num_rows($res) > 0) { ?>
 
-                <div class="container">
+                <div class="">
                     <div class="row">
-                        <div class="col-md-3"></div>
+                        <div class="col-lg-3"></div>
                         <div class="col-md-6 foo">
                             <div class="page-header">
                                 <h1 class="animated bounceIn" style="text-align: center;">Vehicle List</h1>
@@ -60,28 +66,36 @@ $res = mysqli_query($connection, $sql);
                             <table class="table">
                                 <thead>
                                     <th>Vehicle Picture</th>
+                                    <th>Driver</th>
                                     <th>Vehicle Plate Number</th>
                                 </thead>
 
                                 <?php while ($row = mysqli_fetch_assoc($res)) {  ?>
                                     <tbody>
                                         <tr>
-                                            <td><img height="100px" width="100px" src="<?php echo $row["photo"]; ?>" alt="dp"></td>
-
-                                            <td class="mt-4"><a href="busprofile.php?busid=<?php echo $row["plate_number"]; ?>"> <?php echo strtoupper($row["plate_number"]) ?></a></td>
-                                            <?php if ($row["status"] == 1) {?>
-                                                <td>
-                                                    <div class="badge badge-primary rounded-pill p-2">
-                                                        <a href="book.php?id=<?php echo $row['plate_number'];?>" class="fs-2 text-light">Book Now >></a>
-                                                    </div>
+                                            <?php if ($row['veh_status'] == 1){?>
+                                                <td><img height="80px" width="120px" src="picture/cars/<?php echo $row["photo"]; ?>" alt="dp"></td>
+                                                <td class="pt-5">
+                                                    <?php 
+                                                    echo $row['full_name'];
+                                                    // mysqli_close($connection);
+                                                    ?>
                                                 </td>
-                                            <?php } else  if ($row["status"] == 0) {?>
-                                                <td>
-                                                    <div class="badge badge-danger rounded-pill p-2">
-                                                        <a href="#" class="fs-2 text-light">Not Available >></a>
-                                                    </div>
-                                                </td>
-                                            <?php }?>
+                                                <td class="pt-5"><a class="mt-4" href="busprofile.php?busid=<?php echo $row["plate_number"]; ?>"> <?php echo strtoupper($row["plate_number"]) ?></a></td>
+                                                <?php if ($row["veh_status"] == 1) { ?>
+                                                    <td class="pt-5">
+                                                        <div class="badge badge-primary rounded-pill p-2">
+                                                            <a href="book.php?id=<?php echo $row['plate_number']; ?>&user=<?php echo $user; ?>" class="fs-2 text-light">Book Now >></a>
+                                                        </div>
+                                                    </td>
+                                                <?php } else  if ($row["veh_status"] == 0) { ?>
+                                                    <td class="pt-5">
+                                                        <div class="badge badge-danger rounded-pill p-2">
+                                                            <a href="#" class="fs-2 text-light">Not Available >></a>
+                                                        </div>
+                                                    </td>
+                                                <?php } 
+                                            }?>
                                         </tr>
                                     </tbody>
                             <?php }
@@ -112,15 +126,15 @@ $res = mysqli_query($connection, $sql);
 
 
 
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- bs-custom-file-input -->
-<script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- BoBootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- bs-custom-file-input -->
+    <script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../dist/js/demo.js"></script>
 </body>
 
 </html>
