@@ -53,7 +53,7 @@ $row = mysqli_fetch_assoc($res);
     <div class="container">
         <div class="row">
             <div class="fb-profile-text" id="h1">
-                <h2><?php echo $row['plate']; ?></h2>
+                <h2><?php echo $row['plate_number']; ?></h2>
             </div>
             <hr>
             <div class="col-sm-3">
@@ -75,8 +75,8 @@ $row = mysqli_fetch_assoc($res);
 
                             <!--
                     <li>
-                      <a href="#tab_default_2" data-toggle="tab">
-                     Bill </a>
+                    <a href="#tab_default_2" data-toggle="tab">
+                    Bill </a>
                     </li>
                     -->
                         </ul>

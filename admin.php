@@ -365,7 +365,7 @@ if (!isset($_SESSION)) {
                                                 <th>Pickup Point</th>
                                                 <th>Request Date</th>
                                                 <th>Return Date</th>
-                                                <th>Reason</th>
+                                                <!-- <th>Reason</th> -->
                                                 <th>Confirmation</th>
                                                 <th>Trip Status</th>
                                                 <th>Paid</th>
@@ -385,7 +385,7 @@ if (!isset($_SESSION)) {
                                                     <td><?PHP echo $row['pickup_point']; ?></td>
                                                     <td><?PHP echo substr($row['created_at'], 0, 10); ?></td>
                                                     <td><?PHP echo $row['return_date']; ?></td>
-                                                    <td><?PHP echo $row['resons']; ?></td>
+                                                    <!-- <td><?PHP echo $row['resons']; ?></td> -->
                                                     <td>
                                                         <?php
                                                         if ($row['confirm_trip'] == 1)
@@ -410,7 +410,6 @@ if (!isset($_SESSION)) {
                                                             echo '<span class="badge badge-warning p-2 rounded-pill">Not Paid</span>';
                                                         ?>
                                                     </td>
-
                                                 </tr>
                                             <?PHP } ?>
                                         </tbody>
@@ -423,7 +422,7 @@ if (!isset($_SESSION)) {
                                                 <th>Pickup Point</th>
                                                 <th>Request Date</th>
                                                 <th>Return Date</th>
-                                                <th>Reason</th>
+                                                <!-- <th>Reason</th> -->
                                                 <th>Confirmation</th>
                                                 <th>Trip Status</th>
                                                 <th>Paid</th>

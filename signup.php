@@ -27,13 +27,14 @@ if (isset($_POST['submit'])) {
         $msg = '<div class="alert alert-success" style="margin-top:30px";>
                     <strong>Success!</strong> Registration Succefull.
                     </div>';
-        header ('Location:index.php');
+        header('Location:index.php');
     }
 }
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
@@ -66,10 +67,10 @@ if (isset($_POST['submit'])) {
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-download"></i></span>
                         <select name="department" id="" style="width:515px; padding: 10px; ">
-                            <option value="">BIT</option>
-                            <option value="">Economy</option>
-                            <option value="">Hospitality</option>
-                            <option value="">Tourism</option>
+                            <option value="BIT">BIT</option>
+                            <option value="Economy">Economy</option>
+                            <option value="Hospitality">Hospitality</option>
+                            <option value="Tourism">Tourism</option>
                         </select>
                     </div>
                     <br>
@@ -105,4 +106,5 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 </body>
+
 </html>
