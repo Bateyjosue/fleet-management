@@ -48,7 +48,6 @@ $result = mysqli_query($connection, $select_query);
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1 class="m-0">Boooking List</h1>
-                            <?php echo $msg; ?>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
